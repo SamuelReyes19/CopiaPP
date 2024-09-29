@@ -80,7 +80,7 @@ if($varsesion == null ||$varsesion == ''){
                         <li class="nav-item h5 me-4 table-hover " id="hola"><a class="nav-link active " id="navam"  href="landing.php">Inicio</a>
                         </li>
                         <li class="nav-item h5  me-4">
-                            <a class="nav-link active" id="navam" aria-current="page" target="contenido-iframe" href="../orden.php">Menu</a>
+                            <a class="nav-link active" id="navam" aria-current="page" target="contenido-iframe" href="../VistaReserva/Menu.php">Menu</a>
                         </li>
                         <li class="nav-item h5  me-4">
                             <a class="nav-link active " id="navam" href="#" >Contacto</a>
@@ -94,7 +94,7 @@ if($varsesion == null ||$varsesion == ''){
                                 style="background-color: #239227;">
                                 <li><a class="dropdown-item table-hover" id="elhover" style="color: white;" target="contenido-iframe" href="../../Vista/inciarSesion.php" >Iniciar Sesion</a></li>
                                 <li><a class="dropdown-item table-hover" id="elhover" style="color: white;" target="contenido-iframe" href="../VistaUsuario/Registrarse.php" >Registrarse</a></li>
-                                <li><a class="dropdown-item" id="elhover" style="color: white;" target="contenido-iframe" href="../VistaUsuario/UsuarioAdmin.php">Pizzero</a></li>
+                                <li><a class="dropdown-item" id="elhover" style="color: white;"  href="../VistaUsuario/UsuarioAdmin.php">Pizzero</a></li>
                                 <li><a class="dropdown-item" id="elhover" style="color: white;" href="../logout.php">Cerrar Sesion</a></li>
                             </ul>
                         </li>

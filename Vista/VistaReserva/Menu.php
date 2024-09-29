@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="estilos.css">
-    <link rel="stylesheet" href="../Config/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Vista/estilos.css">
+    <link rel="stylesheet" href="../../Config/css/bootstrap.min.css">
     <script href="./Config/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -15,7 +15,7 @@
         </div>
         <div class="row align-items-start mb-5" id="cartas">
             <div class="col card carta1 shadow-lg me-5"  style="height: 430px;" >
-                <img src="../Imagenes/pollo-champinones.jpg" style="height: 60%;" class="card-img-top" alt="...">
+                <img src="../../Imagenes/pollo-champinones.jpg" style="height: 60%;" class="card-img-top" alt="...">
                 <div class="card-body d-flex row justify-content-center align-items-center" style="height: 5%;">
                     <h5 class="card-title d-flex row justify-content-center ">Pizza Champiñones</h5>
                     <p class="card-text text-center">Tomate, Motzarella, Champiñon</p>
@@ -26,7 +26,7 @@
                   </div>
             </div>
             <div class="col card me-5 shadow " style="height: 430px;" >
-                <img src="../Imagenes/Presentacion Pepperoni.jpg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
+                <img src="../../Imagenes/Presentacion Pepperoni.jpg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
                 <div class="card-body d-flex row justify-content-center align-items-center" style="height: 5%;">
                     <h5 class="card-title d-flex row justify-content-center ">Pizza Pepperoni</h5>
                     <p class="card-text text-center">Tomate , Mozzarella, Pepperoni</p>
@@ -36,7 +36,7 @@
                   </div>
             </div>
             <div class="col card  shadow" style="height: 430px;" >
-                <img src="../Imagenes/pizza-vegetariana.jpg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
+                <img src="../../Imagenes/pizza-vegetariana.jpg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
                 <div class="card-body d-flex row justify-content-center align-items-center" style="height: 5%;">
                     <h5 class="card-title d-flex row justify-content-center ">Pizza Vegetariana</h5>
                     <p class="card-text text-center">Tomate, Mozarella, Champiñon</p>
@@ -48,7 +48,7 @@
         </div>
         <div class="row align-items-center mb-5" id="cartas">
             <div class="col card carta1 shadow-lg me-5"  style="height: 430px;" >
-                <img src="../Imagenes/Lahawaiana.jpg" style="height: 60%;" class="card-img-top" alt="...">
+                <img src="../../Imagenes/Lahawaiana.jpg" style="height: 60%;" class="card-img-top" alt="...">
                 <div class="card-body d-flex row justify-content-center align-items-center" style="height: 5%;">
                     <h5 class="card-title d-flex row justify-content-center ">Pizza Hawaiana</h5>
                     <p class="card-text text-center" >Jamon, Piña, Mozarella</p>
@@ -58,7 +58,7 @@
                   </div>
             </div>
             <div class="col card me-5 shadow " style="height: 430px;" >
-                <img src="../Imagenes/Laranchera.jpg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
+                <img src="../../Imagenes/Laranchera.jpg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
                 <div class="card-body d-flex row justify-content-center align-items-center" style="height: 5%;">
                     <h5 class="card-title d-flex row justify-content-center ">Pizza Ranchera</h5>
                     <p class="card-text text-center">Pollo, Maiz, Salchicha</p>
@@ -68,7 +68,7 @@
                   </div>
             </div>
             <div class="col card  shadow" style="height: 430px;" >
-                <img src="../Imagenes/CarneBBQEK.jpeg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
+                <img src="../../Imagenes/CarneBBQEK.jpeg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
                 <div class="card-body d-flex row justify-content-center align-items-center" style="height: 5%;">
                     <h5 class="card-title d-flex row justify-content-center ">Pizza CarneBBQ</h5>
                     <p class="card-text text-center" >Carne, Mozarella, salsaBBQ</p>
@@ -80,7 +80,7 @@
           </div>
         <div class="row align-items-end mb-5">
             <div class="col card carta1 shadow-lg me-5"  style="height: 430px;" >
-                <img src="../Imagenes/Paisa.jpg" style="height: 60%;" class="card-img-top" alt="...">
+                <img src="../../Imagenes/Paisa.jpg" style="height: 60%;" class="card-img-top" alt="...">
                 <div class="card-body d-flex row justify-content-center align-items-center" style="height: 5%;">
                     <h5 class="card-title d-flex row justify-content-center ">Pizza Paisa</h5>
                     <p class="card-text text-center">Chorizo , Qcosteño, Champiñon</p>
@@ -90,7 +90,7 @@
                   </div>
             </div>
             <div class="col card me-5 shadow " style="height: 430px;" >
-                <img src="../Imagenes/eLMaduro.jpg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
+                <img src="../../Imagenes/eLMaduro.jpg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
                 <div class="card-body d-flex row justify-content-center align-items-center" style="height: 5%;">
                     <h5 class="card-title d-flex row justify-content-center ">Pizza Maduro</h5>
                     <p class="card-text text-center">Jamon, Queso, Platano</p>
@@ -100,7 +100,7 @@
                   </div>
             </div>
             <div class="col card  shadow" style="height: 430px;" >
-                <img src="../Imagenes/Latropical.jpeg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
+                <img src="../../Imagenes/Latropical.jpeg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
                 <div class="card-body d-flex row justify-content-center align-items-center" style="height: 5%;">
                     <h5 class="card-title d-flex row justify-content-center ">Pizza Tropical</h5>
                     <p class="card-text text-center">Manog , Jamon, Pimiento</p>
@@ -115,7 +115,7 @@
 
          <div class="row align-items-end mb-5">
             <div class="col card carta1 shadow-lg me-5"  style="height: 430px;" >
-                <img src="../Imagenes/Pizza-mangotocineta.jpg" style="height: 60%;" class="card-img-top" alt="...">
+                <img src="../../Imagenes/Pizza-mangotocineta.jpg" style="height: 60%;" class="card-img-top" alt="...">
                 <div class="card-body d-flex row justify-content-center align-items-center" style="height: 5%;">
                     <h5 class="card-title d-flex row justify-content-center ">Pizza MangoTocineta</h5>
                     <p class="card-text text-center">Mango , Tocino, Mozarella</p>
@@ -125,7 +125,7 @@
                   </div>
             </div>
             <div class="col card me-5 shadow " style="height: 430px;" >
-                <img src="../Imagenes/Mexicana.jpg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
+                <img src="../../Imagenes/Mexicana.jpg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
                 <div class="card-body d-flex row justify-content-center align-items-center" style="height: 5%;">
                     <h5 class="card-title d-flex row justify-content-center ">Pizza Mexicana</h5>
                     <p class="card-text text-center">Jalapeños, Carne, Champiñon</p>
@@ -135,7 +135,7 @@
                   </div>
             </div>
             <div class="col card  shadow" style="height: 430px;" >
-                <img src="../Imagenes/PizzaCarneMolida.jpg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
+                <img src="../../Imagenes/PizzaCarneMolida.jpg" style="height: 60%; width: 100%;" class="card-img-top" alt="...">
                 <div class="card-body d-flex row justify-content-center align-items-center" style="height: 5%;">
                     <h5 class="card-title d-flex row justify-content-center ">Pizza Carne</h5>
                     <p class="card-text text-center">Carne Molida , Mozarella, Tomate</p>

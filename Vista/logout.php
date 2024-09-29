@@ -4,5 +4,5 @@ session_start();
 unset($_SESSION['username']);
 session_destroy();
 echo "se cerro la sesion";
-header("Location: /PizzaPaisa/Vista//inciarSesion.php");
+header("Location: inciarSesion.php");
 ?>

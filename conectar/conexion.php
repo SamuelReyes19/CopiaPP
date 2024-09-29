@@ -22,7 +22,7 @@
 
     $obj = new Conexion();
     if($obj->conectando()){
-          echo "conectado";
+          //echo "conectado";
         }
  
 

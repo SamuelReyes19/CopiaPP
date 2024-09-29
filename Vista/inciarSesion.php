@@ -27,7 +27,7 @@ if (isset($_POST['Ingresar'])) {
         echo "Hashed password from DB: " . $hashedPassword;
         // Verify the given password against the hash in the database
         if (password_verify($Contrasena, $hashedPassword)) {
-            header ("location:  landing.php");
+            header ("location:  /PizzaPaisa/Vista/VistaUsuario/landing.php");
             exit();
         } else {
             $consulta="SELECT * from usuario WHERE Correo='$Correo' and Contrasena='$Contrasena' ";
