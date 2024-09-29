@@ -5,4 +5,5 @@ unset($_SESSION['username']);
 session_destroy();
 echo "se cerro la sesion";
 header("Location: inciarSesion.php");
+//i
 ?>
