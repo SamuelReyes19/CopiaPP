@@ -59,7 +59,7 @@
                         <div class="col-md-6">
                             <label for="validationCustom05" class="form-label">TipoUsuario</label>
                             <select class="form-select" name="idTipoUsuario" id="idTipoUsuario" required>
-                            <option selected disabled value="">Elije...</option>
+                            <option selected disabled value="idTipoUsuario">Elije...</option>
                             <option value="1">Gerente</option>
                             <option value="2">Encargado de reservas</option>
                             <option value="3">Cliente</option>
