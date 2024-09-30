@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2024 a las 02:55:04
+-- Tiempo de generación: 30-09-2024 a las 17:11:22
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -421,7 +421,6 @@ INSERT INTO `usuario` (`UsuarioDocumento`, `UsuarioTelefono`, `Contrasena`, `Cor
 ('23256', '3227327267', 'tryetyet', 'sisi@gmail.com', 'tal diego', 'Monroy', 1, 3),
 ('3344556677', '765432', 'Ana34', 'Ana@gmail.com', 'Ana', 'Ramirez', 2, 3),
 ('4455667788', '876543', 'Luis56', 'Luis1@gmail.com', 'Luis', 'Hernandez', 3, 3),
-('44655644', '13456654', '$2y$10$JBZjK8Rqd86ninQ9cBaAOuAjqLooKV4nqsCKpl.55IfPvISIJ2UW.', 'Oscar@gmail.com', 'Oscar', 'Marulanda', 1, 1),
 ('4512324', '4123', 'Carlos12', 'Carlos@gmail.com', 'Carlos', 'Muro', 2, 3),
 ('4512754', '414783', 'Henry12', 'Henry@gmail.com', 'Henry', 'yabe', 2, 3),
 ('465464545', '123454', '$2y$10$/.ICg3WLI4NBsS2ZNmFIC.hlTy4HzuEFH', 'Takeshi@gmial.com', 'Eien', 'Takeshi', 1, 3),
