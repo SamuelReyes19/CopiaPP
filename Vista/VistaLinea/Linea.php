@@ -72,7 +72,7 @@
                                 <input type="text" name="idPedido" id="idPedido" class="form-control" readonly>
                         </div>
                         <div class="col-md-6">
-                            <input type="text" name="idSabores" id="idSabores" class="form-control"  placeholder="">
+                            <input type="hidden" name="idSabores" id="idSabores" class="form-control"  placeholder="">
                             <label for="inputAddress2" class="form-label">Sabor</label>
                             <input type="text" name="idSabor" id="idSabor" class="form-control"  placeholder="">
                         </div>

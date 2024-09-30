@@ -74,7 +74,7 @@
                             <input type="text" name="idSabor" id="idSabor" class="form-control"  placeholder="" readonly>
                         </div>
                         <div class="col-md-6">
-                        <input type="text" name="idIngredientes" id="idIngredientes" class="form-control"  >
+                        <input type="hidden" name="idIngredientes" id="idIngredientes" class="form-control"  >
                                 <label for="inputPassword4" class="form-label">Ingrediente</label>
                                 <input type="text" name="idIngrediente" id="idIngrediente" class="form-control"  >
                          </div>

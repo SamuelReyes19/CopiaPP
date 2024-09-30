@@ -88,8 +88,8 @@
                                 style="background-color: #239227;">
                                 <li><a class="dropdown-item table-hover" id="elhover" style="color: white;" target="contenido-iframe" href="../../Vista/VistaReserva/Reserva.php" >Reservas</a></li>
                                 <li><a class="dropdown-item table-hover" id="elhover" style="color: white;" target="contenido-iframe" href="../VistaLinea/Linea.php" >Linea</a></li>
-                                <li><a class="dropdown-item" id="elhover" style="color: white;" target="contenido-iframe" href="../VistaSabor/sabor.php">Usuario</a></li>
-                                <li><a class="dropdown-item table-hover" id="elhover" style="color: white;" target="contenido-iframe" href="../../Vista/VistaSaborIngrediente/SaborIngrediente.php" >Sabores</a></li>
+                                <li><a class="dropdown-item" id="elhover" style="color: white;"  href="../VistaSabor/UsuarioAdmin.php">Usuario</a></li>
+                                <li><a class="dropdown-item table-hover" id="elhover" style="color: white;" target="contenido-iframe" href="../VistaSabor/sabor.php" >Sabores</a></li>
                                 <li><a class="dropdown-item table-hover" id="elhover" style="color: white;" target="contenido-iframe" href="../VistaSaborIngrediente/SaborIngrediente.php" >SaborIngrediente</a></li>
                                 <li><a class="dropdown-item table-hover" id="elhover" style="color: white;" target="contenido-iframe" href="../../Vista/VistaIngrediente/Ingrediente.php" >Ingrediente</a></li>
                                 <li><a class="dropdown-item" id="elhover" style="color: white;" href="../logout.php">Cerrar Sesion</a></li>
