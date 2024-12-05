@@ -38,13 +38,15 @@
                                            )";
                                            echo $insertar;
                                            mysqli_query($c,$insertar);
-                                           echo '<script>Swal.fire({
-																	position: "top",
-																	icon: "success",
-																	title: "El Ingrediente Fue Agregado en el Sistema",
-																	showConfirmButton: false,
-																	timer: 3000
-																	});</script>';
+										   echo '<script>
+											Swal.fire({
+												position: "top",
+												icon: "success",
+												title: "El Ingrediente Fue Agregado en el Sistema",
+												showConfirmButton: false,
+												timer: 3000
+											});
+										</script>';
                                             
                                         }
 
@@ -67,18 +69,20 @@
 																	Existenciaskg = '$this->Existenciaskg'																									
                                                                     where idIngrediente ='$this->idIngrediente'";
 																	mysqli_query($cone,$id);
-																	//echo $id;
-																	echo '<script>	Swal.fire({
+																	echo $id;
+																	echo '<script>
+																	Swal.fire({
 																		position: "top",
 																		icon: "success",
 																		title: "El Ingrediente Fue Actualizado en el Sistema",
 																		showConfirmButton: false,
-																		timer: 3000
-																	  });</script>';			
+																		timer: 10000
+																	});
+																</script>';	
 																	
 																		
 																}
-				}
+															}
 
                      
                     

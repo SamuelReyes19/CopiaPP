@@ -78,7 +78,7 @@
                                                                     UsuarioDocumento ='$this->UsuarioDocumento'									
                                                                     where idPedido ='$this->idPedido'";
 																	mysqli_query($cone,$id);
-																	//echo $id;
+																	echo $id;
 																	echo '<script>	Swal.fire({
 																		position: "top",
 																		icon: "success",

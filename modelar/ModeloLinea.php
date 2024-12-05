@@ -80,6 +80,7 @@
                                     WHERE idPedido = '$this->idPedido' and idSabor = '$this->idSabores'";
                                 
                                 if (mysqli_query($cone, $id)) {
+                                    echo $id;
                                     echo '<script> 
                                         Swal.fire({
                                             position: "top",
