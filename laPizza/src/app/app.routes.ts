@@ -1,0 +1,14 @@
+import { Routes } from '@angular/router';
+import { FormularioComponent } from './componentes/formulario/formulario.component';
+import { IniciosesionComponent } from './componentes/iniciosesion/iniciosesion.component';
+import { DisboardComponent } from './componentes/disboard/disboard.component';
+import { authGuard } from './auth.guard';
+import { TablaUsuarioComponent } from './componentes/tabla-usuario/tabla-usuario.component';
+import { IframesComponent } from './componentesPhp/iframes/iframes.component';
+export const routes: Routes = [
+    { path: '', component: FormularioComponent },
+    { path: 'inicio-sesion', component: IniciosesionComponent},
+    { path: 'disboard', component: DisboardComponent,canActivate: [authGuard]},
+    { path: 'tablaUsuario', component: TablaUsuarioComponent,canActivate: [authGuard]},
+    { path: 'iframes', component: IframesComponent,canActivate: [authGuard]},
+];
