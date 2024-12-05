@@ -53,6 +53,7 @@
                                         Cantidadkg = '$this->Cantidadkg'
                                     where idSabor = '$this->idSabor' and idIngrediente = '$this->idIngredientes'";
                             mysqli_query($cone, $id);
+                            echo $id;
                             echo '<script> Swal.fire({
                                     position: "top",
                                     icon: "success",
