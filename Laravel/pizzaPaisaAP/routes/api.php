@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\usuarioControlador;
+use App\Http\Controllers\ReservaControlador;
+use App\Http\Controllers\LineaControlador;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,3 +22,9 @@ Route::post('/pizzapaisa',[usuarioControlador::class, 'store']);
 Route::get('/pizzapaisa/{UsuarioDocumento}',[usuarioControlador::class, 'show']);
 Route::put('/pizzapaisa/{UsuarioDocumento}',[usuarioControlador::class, 'update']);
 Route::delete('/pizzapaisa/{UsuarioDocumento}',[usuarioControlador::class,'destroy']);
+Route::post('/reserva', [ReservaControlador::class, 'store']);
+Route::get('/reserva', [ReservaControlador::class, 'index']);
+Route::put('/reserva', [ReservaControlador::class,'updeit']);
+Route::delete('/reserva', [ReservaControlador::class,'dilit']);
+Route::get('/linea', [LineaControlador::class, 'index']);
+Route::post('/linea', [LineaControlador::class, 'store']);
