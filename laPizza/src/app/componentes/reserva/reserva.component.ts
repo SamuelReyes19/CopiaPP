@@ -45,7 +45,7 @@ export class ReservaComponent {
   onSubmit(){
     if(this.form.valid){
       const datos = this.form.value;
-      const TotalPrecio = datos.items.reduce((acc: number, item: { NumeroPorciones: number; }) => acc + item.NumeroPorciones * 13000, 0);
+      const TotalPrecio = datos.items.reduce((acc: number, item: { NumeroPorciones: number; }) => acc + item.NumeroPorciones * 14000, 0);
       this.http.post('http://127.0.0.1:8000/api/reserva', {FechaHoraEntrega: datos.FechaHoraEntrega, PrecioTotal: TotalPrecio, UsuarioDocumento: localStorage.getItem('documento')})
       .subscribe({
         next: (response) =>{
