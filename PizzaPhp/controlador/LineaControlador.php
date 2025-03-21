@@ -5,7 +5,13 @@ $obj = new Linea();
 if($_POST){
 }
 
-
+if(isset($_POST['guardar'])){
+    $obj->idSabor = $_POST['idSabor'];
+    $obj->idPedido = $_POST['idPedido'];
+    $obj->NumeroPorciones = $_POST['NumeroPorciones'];
+    
+    $obj->agregar();
+}
 
 if(isset($_POST['modifica'])){
     $obj->idSabor = $_POST['idSabor'];
