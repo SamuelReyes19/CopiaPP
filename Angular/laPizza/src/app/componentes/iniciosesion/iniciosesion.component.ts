@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-iniciosesion',
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './iniciosesion.component.html',
-  styleUrl: './iniciosesion.component.css'
+  styleUrls: ['./iniciosesion.component.css'] // Corregido aquí
 })
 export class IniciosesionComponent {
   form: FormGroup;
@@ -43,5 +44,9 @@ export class IniciosesionComponent {
     } else {
       console.log('Formulario no válido');
     }
+  }
+
+  irARegistro() {
+    this.router.navigate(['/formulario']); // Agregada la función para redirigir al registro
   }
 }
