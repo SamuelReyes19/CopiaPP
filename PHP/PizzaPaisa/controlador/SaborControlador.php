@@ -28,27 +28,15 @@ if(isset($_POST['elimina'])){
 
 $cone  = new Conexion();
 $c=$cone->conectando();
-$sql1="select count(*) as totalRegistro from sabor";
-$ejecuta1=mysqli_query($c,$sql1);
-$res1 = mysqli_fetch_array($ejecuta1);
-$totalRegistros = $res1['totalRegistro'];
-$maximoRegistros = 6;
- if(empty($_GET['pagina'])){
-     $pagina=1;
- }else{
-     $pagina=$_GET['pagina'];
- }
- $desde = ($pagina-1)*$maximoRegistros;
- $totalPaginas=ceil($totalRegistros/$maximoRegistros);
 if(isset($_POST['buscar'])){
     $obj->idPedido = $_POST['idSabor'];
    
 
-  $sql2="select * from sabor where idSabor LIKE '%$obj->idSabor%' limit $desde,$maximoRegistros ";
+  $sql2="select * from sabor where idSabor LIKE '%$obj->idSabor%'";
   $ejecuta=mysqli_query($c,$sql2);
   $res = mysqli_fetch_array($ejecuta);
   }else{
-         $sql2="select * from sabor limit $desde,$maximoRegistros ";
+         $sql2="select * from sabor";
          $ejecuta=mysqli_query($c,$sql2);
          $res = mysqli_fetch_array($ejecuta);
   }

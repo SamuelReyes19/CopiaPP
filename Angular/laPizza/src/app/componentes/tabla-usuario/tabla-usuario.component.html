@@ -1,5 +1,5 @@
 <div class="contenedor2">
-  <h1 class="title">Clientes Registrados</h1>
+  <h1 class="title" style="color: white;" >Clientes Registrados</h1>
   <table id="cliente">
     <thead class="cabezata">
       <tr class="filaprin">
@@ -20,8 +20,8 @@
         <td>{{ usuario.Correo }}</td>
         <td>{{ usuario.UsuarioPrimerNombre }}</td>
         <td>{{ usuario.UsuarioApellido }}</td>
-        <td>{{ usuario.idTipoDocumento }}</td>
-        <td>{{ usuario.idTipoUsuario }}</td>
+        <td>{{ obtenerTipoDocumento(usuario.idTipoDocumento) }}</td>
+        <td>{{ obtenerTipoUsuario(usuario.idTipoUsuario) }}</td>
         <td>
           <button class="btn btn-sm btn-primary editM" (click)="editarUsuario(usuario)" data-bs-toggle="modal" data-bs-target="#editar">
             <i class="fa-solid fa-pen-to-square"></i>
