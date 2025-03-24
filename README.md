@@ -108,4 +108,4 @@ Este repositorio contiene el proyecto **Pizza Paisa**, desarrollado como parte d
 - Samuel Reyes
 - Lizeth Torres
 
-Como parte del proceso formativo del SENA, Trimestre 5.
+Como parte del proceso formativo del SENA.
