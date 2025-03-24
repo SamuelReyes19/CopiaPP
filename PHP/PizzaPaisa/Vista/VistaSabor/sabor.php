@@ -132,7 +132,7 @@
             </form>
             
             <button type="button"  class="btn btn-primary d-flex  m-3  " style="heigth:20px ;" data-bs-toggle="modal" data-bs-target="#Reservar">
-            Reserva
+            Añadir Sabor
             </button>
            
         </div>
@@ -141,10 +141,9 @@
          <thead class=" " id="succes" style = "background-color: #239227;">
         <tr style ="color: white;" >
             
-            <th scope="col">Pedido</th>
-            <th scope="col">idSabor</th>
             <th scope="col">Pizza</th>
             <th scope="col">Precio</th>
+            <th scope="col">Accion</th>
             
             
 
@@ -160,13 +159,11 @@
             ?>
                 <tr>
                 
-                
-                <td><?php echo $res[0]?></td>
                 <td><?php echo $res[1]?></td>
                 <td><?php echo $res[2]?></td>
                 
                 
-                <td><form  class="d-flex  justify-content-center align-items-center" action="" method="post">
+                <td><form  class="d-flex  justify-content-left align-items-left" action="" method="post">
                 
                     <button type="button"   class="btn btn-sm btn-danger elimin" ><i class="fa-solid fa-trash"></i></button>
                     
@@ -185,42 +182,6 @@
             ?>
         </tbody>
     </table>
-    <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    <?php 
-                    if($pagina!=1){
-                    ?>
-                    <li class="page-item ">
-                        <a class="page-link" href="?pagina=<?php echo 1; ?>"><</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="?pagina=<?php echo $pagina-1; ?>"><<</a>
-                    </li>
-                    <?php
-                    }
-                    for($i=1; $i<=$totalPaginas; $i++){
-                        if($i==$pagina){
-                            echo'<li class="page-item active" aria-current="page"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>';    
-                        }
-                        else{
-                            echo'<li class="page-item "><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>'; 
-                        }
-                    }
-                    if($pagina !=$totalPaginas){
-                    ?>
-                    
-                    <li class="page-item">
-                        <a class="page-link" href="?pagina=<?php echo $pagina+1; ?>">>></a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="?pagina=<?php echo $totalPaginas; ?>">></a>
-                    </li>
-                    <?php
-                    }
-                    ?>
-                </ul>
-            </nav>
-</div>
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

@@ -3,28 +3,41 @@ import { OnInit } from '@angular/core';
 import { ClienteService } from '../../cliente.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import {ReactiveFormsModule}from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { response } from 'express';
-import { error } from 'console';
+
 @Component({
   selector: 'app-tabla-usuario',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './tabla-usuario.component.html',
-  styleUrl: './tabla-usuario.component.css'
+  styleUrls: ['./tabla-usuario.component.css']
 })
 export class TablaUsuarioComponent implements OnInit {
-  
+
   usuario: any[] = []; // Array para almacenar los datos de los usuarios
   mensajeError: string = ''; // Mensaje en caso de error
   formularioEdicion: FormGroup;
   formularioEliminar: FormGroup;
- 
-  constructor(private clienteService: ClienteService, private fb: FormBuilder , private http: HttpClient) {
+
+  // Mapa de tipos de documento
+  tipoDocumentoMap: { [key: number]: string } = {
+    1: 'Cedula de Ciudadania',
+    2: 'Cedula de Extranjeria',
+    3: 'Numero de Pasaporte'
+  };
+
+  // Mapa de tipos de usuario
+  tipoUsuarioMap: { [key: number]: string } = {
+    1: 'Gerente',
+    2: 'Encargado de Reserva',
+    3: 'Cliente'
+  };
+
+  constructor(private clienteService: ClienteService, private fb: FormBuilder, private http: HttpClient) {
     this.formularioEdicion = this.fb.group({
       UsuarioDocumento: [''],
-      UsuarioDocumento1: [{value : '', disabled: true}],
+      UsuarioDocumento1: [{ value: '', disabled: true }],
       UsuarioTelefono: [''],
       Contrasena: [''],
       Correo: [''],
@@ -35,11 +48,10 @@ export class TablaUsuarioComponent implements OnInit {
     });
     this.formularioEliminar = this.fb.group({
       UsuarioDocumento: ['']
-    })
-   }
+    });
+  }
 
   ngOnInit(): void {
-    // Realizamos la solicitud cuando el componente se inicializa
     this.clienteService.getClientes().subscribe(
       (data) => {
         this.usuario = data;  // Asignamos los datos obtenidos a la variable usuario
@@ -49,10 +61,23 @@ export class TablaUsuarioComponent implements OnInit {
       }
     );
   }
+
   editarUsuario(usuario: any): void {
-    // para Verificar que UsuarioDocumento este existiendo
     if (usuario && usuario.UsuarioDocumento) {
-      console.log('Usuario a editar:', usuario);  // imprime los dtos del usario para ver sin son validos
+      console.log('Usuario a editar:', usuario);
+
+      // Mapeamos el idTipoDocumento al nombre usando tipoDocumentoMap
+      const tipoDocumento = this.tipoDocumentoMap[usuario.idTipoDocumento];
+      if (tipoDocumento) {
+        console.log(`Tipo de Documento: ${tipoDocumento}`); // Imprimimos el nombre del tipo de documento
+      }
+
+      // Mapeamos el idTipoUsuario al nombre usando tipoUsuarioMap
+      const tipoUsuario = this.tipoUsuarioMap[usuario.idTipoUsuario];
+      if (tipoUsuario) {
+        console.log(`Tipo de Usuario: ${tipoUsuario}`); // Imprimimos el nombre del tipo de usuario
+      }
+
       this.formularioEdicion.patchValue({
         UsuarioDocumento: usuario.UsuarioDocumento,
         UsuarioDocumento1: usuario.UsuarioDocumento,
@@ -61,8 +86,8 @@ export class TablaUsuarioComponent implements OnInit {
         Correo: usuario.Correo,
         UsuarioPrimerNombre: usuario.UsuarioPrimerNombre,
         UsuarioApellido: usuario.UsuarioApellido,
-        idTipoDocumento: usuario.idTipoDocumento,
-        idTipoUsuario: usuario.idTipoUsuario
+        idTipoDocumento: tipoDocumento || usuario.idTipoDocumento, // Asignamos el nombre del tipo de documento si existe
+        idTipoUsuario: tipoUsuario || usuario.idTipoUsuario // Asignamos el nombre del tipo de usuario si existe
       });
     } else {
       console.error('Usuario no válido o sin Documento');
@@ -71,50 +96,57 @@ export class TablaUsuarioComponent implements OnInit {
 
   guardarEdicion() {
     if (this.formularioEdicion.valid) {
-      // Enviar los datos del formulario a la api para actualizar
-      const datos =  this.formularioEdicion.value;
+      const datos = this.formularioEdicion.value;
       this.http.put(`http://localhost:8000/api/pizzapaisa/${datos.UsuarioDocumento}`, datos)
-      .subscribe(
-        (response) => {
-          console.log('Usuario actualizado', response);
-          
-        },
-        (error: any) => {
-          console.error('Error al actualizar el usuario', error);
-        }
-      );
+        .subscribe(
+          (response) => {
+            console.log('Usuario actualizado', response);
+          },
+          (error: any) => {
+            console.error('Error al actualizar el usuario', error);
+          }
+        );
     } else {
       console.log('Formulario inválido');
     }
   }
-  eliminarUsuario(usuario: any): void{
-    if(usuario.UsuarioDocumento){
-      console.log('Usuario a elimianr:', usuario);
+
+  eliminarUsuario(usuario: any): void {
+    if (usuario.UsuarioDocumento) {
+      console.log('Usuario a eliminar:', usuario);
       this.formularioEliminar.patchValue({
         UsuarioDocumento: usuario.UsuarioDocumento
       });
-  }else{
-    console.error('error de usuario')
+    } else {
+      console.error('Error de usuario');
+    }
   }
-    
- }
 
-    guardarElimin(){
-      if(this.formularioEliminar.valid){
-        const datos =  this.formularioEliminar.value;
-        this.http.delete(`http://localhost:8000/api/pizzapaisa/${datos.UsuarioDocumento}`)
+  guardarElimin() {
+    if (this.formularioEliminar.valid) {
+      const datos = this.formularioEliminar.value;
+      this.http.delete(`http://localhost:8000/api/pizzapaisa/${datos.UsuarioDocumento}`)
         .subscribe(
-          (response) =>{
-            console.log('Usuario ELiminaod', response);
+          (response) => {
+            console.log('Usuario Eliminado', response);
           },
-          (error: any) =>{
-            console.error('error al eliminar el usuario');
+          (error: any) => {
+            console.error('Error al eliminar el usuario');
           }
         );
-      }else{
-        console.log('fornulario invalido');
-      }
+    } else {
+      console.log('Formulario inválido');
     }
+  }
+
+  // Función para obtener el nombre del tipo de documento
+  obtenerTipoDocumento(id: number): string {
+    return this.tipoDocumentoMap[id] || 'Tipo desconocido';
+  }
+
+  // Función para obtener el nombre del tipo de usuario
+  obtenerTipoUsuario(id: number): string {
+    return this.tipoUsuarioMap[id] || 'Tipo de Usuario desconocido';
+  }
 
 }
-  
