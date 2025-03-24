@@ -1,6 +1,6 @@
 # Pizza Paisa Sustentación
 
-Este repositorio contiene el proyecto **Pizza Paisa**, desarrollado como parte de la formación en el **SENA**, correspondiente al **quinto trimestre**. El objetivo principal del proyecto es la implementación de un sistema para gestionar pedidos de pizzas, utilizando tecnologías modernas tanto en el backend como en el frontend.
+Este repositorio contiene el proyecto **Pizza Paisa**, desarrollado como parte de la formación en el **SENA**. El objetivo principal del proyecto es la implementación de un sistema para gestionar pedidos de pizzas, utilizando tecnologías modernas tanto en el backend como en el frontend.
 
 ---
 
