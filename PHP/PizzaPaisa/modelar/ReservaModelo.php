@@ -1,5 +1,5 @@
 <?php
-
+require_once(__DIR__ . "/../conectar/conexion.php");
     class Reserva{
 
 		
@@ -57,6 +57,34 @@
                                         }
 
                     }
+					public function modificarr() {
+						$conet = new Conexion();
+						$c = $conet->conectando();
+					
+						$query = "UPDATE reserva SET Entregada = ? WHERE idPedido = ?";
+						$stmt = mysqli_prepare($c, $query);
+					
+						if (!$stmt) {
+							echo json_encode(["status" => "error", "message" => "Error preparando la consulta: " . mysqli_error($c)]);
+							exit;
+						}
+					
+						mysqli_stmt_bind_param($stmt, "ii", $this->Entregada, $this->idPedido);
+						$resultado = mysqli_stmt_execute($stmt);
+					
+						if (!$resultado) {
+							echo json_encode(["status" => "error", "message" => "Error ejecutando la consulta: " . mysqli_stmt_error($stmt)]);
+							exit;
+						}
+					
+						mysqli_stmt_close($stmt);
+					
+						// Devolver respuesta JSON en vez de HTML
+						header('Content-Type: application/json'); // Indica que la respuesta es JSON
+						ob_clean();
+						echo json_encode(["status" => "success", "message" => "El Registro Fue Actualizado en el Sistema"]);
+						exit;
+					}
 
                     function modificar(){
                                     $c = new Conexion();

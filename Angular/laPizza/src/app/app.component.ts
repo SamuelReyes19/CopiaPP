@@ -7,11 +7,10 @@ import { PieComponent } from './componentes/pie/pie.component';
 import { FormularioComponent } from './componentes/formulario/formulario.component';
 import { IniciosesionComponent } from './componentes/iniciosesion/iniciosesion.component';
 import { SafeUrlPipe } from './componentesPhp/pipes/safe-url.pipe';
-import { ReservaComponent } from './componentes/reserva/reserva.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [SafeUrlPipe, CommonModule,RouterOutlet,CabeceraComponent,PieComponent,FormularioComponent,IniciosesionComponent, ReservaComponent],
+  imports: [SafeUrlPipe, CommonModule,RouterOutlet,CabeceraComponent,PieComponent,FormularioComponent,IniciosesionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -24,7 +23,7 @@ export class AppComponent {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // esto va a verificar que si la ruta es el formulario de registro o logeo entonces aculta la cabecera y el pie 
-        if(event.url === '/inicio-sesion' || event.url === '/'){
+        if(event.url === '/inicio-sesion' || event.url === '/formulario' || event.url === '/'){
           this.mostrarCabeceraYPie = false;
 
         }else{

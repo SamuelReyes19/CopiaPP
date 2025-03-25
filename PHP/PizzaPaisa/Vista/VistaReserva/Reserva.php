@@ -144,7 +144,7 @@
             </div>
         </div> 
         
-    <div class="container-md bg-light mt-5 py-4 px-4" style ="width:1100px; ">
+    <div class="container-md bg-light mt-5 py-4 px-4" id="catlos" style ="width:1100px; ">
     
             
             
@@ -184,19 +184,30 @@
                     echo "No hay registros";
                 }else {
                     do{
+                        $pedidoID = $res[0];
             ?>
                 <tr>
                 
                 
-                <td><?php echo $res[0]?></td>
+                <td><?php echo $pedidoID?></td>
                 <td><?php echo $res[1]?></td>
-                <td><?php echo $res[2]?></td>
+                <td>
+                    <?php
+                    if ($res[2] == 1) {
+                        echo '<button class="btn btn-success btn-sm btn-entregada" data-id="' . $res[0] . '" data-entregada="1">Entregado</button>';
+                    } else {
+                    echo '<button class="btn btn-warning btn-sm btn-entregada" data-id="' . $res[0] . '" data-entregada="0">No Entregado</button>';
+                    }
+                    ?>
+                </td>
                 <td><?php echo $res[3]?></td>
                 <td><?php echo $res[4]?></td>
                 <td><?php echo $res[5]?></td>
                 
                 <td><form  class="d-flex  justify-content-center align-items-center" action="" method="post">
-                
+                <button type="button" class="btn btn-sm btn-success toggle-details" data-id="<?php echo $pedidoID; ?>">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
                     <button type="button"   class="btn btn-sm btn-danger elimin" ><i class="fa-solid fa-trash"></i></button>
                     
                     <buttom type="button" class="btn btn-sm btn-primary boton editM "   style="color:black;" ><i class="fa-solid fa-pen-to-square"></i></buttom>
@@ -204,6 +215,46 @@
                 </td>
                 
                 </tr>
+                <tr class="detalle-pedido" id="detalle-<?php echo $pedidoID; ?>" style="display:none;">
+            <td colspan="7">
+                <div class="detalle-contenedor">
+                    <div class="detalle-con">
+                    <h7 class="et7" >Detalles del Pedido ID: <?php echo $pedidoID; ?></h7>
+                    </div>
+                    <table class="table">
+                        <thead class="detalle-con">
+                            <tr>
+                                <th>ID Sabor</th>
+                                <th>Nombre de la Pizza</th>
+                                <th>Cantidad de Porciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                // Aquí puedes hacer otra consulta para obtener los detalles del pedido
+                                $detalleSQL = "SELECT l.idSabor, Nombre_Pizza, l.NumeroPorciones FROM linea l JOIN sabor s ON l.idSabor = s.idSabor WHERE l.idPedido = '$pedidoID'";
+                                $c = new Conexion();
+								$cone = $c->conectando();
+                                $detalleEjecuta = mysqli_query($cone, $detalleSQL);
+                                if ($detalleEjecuta) {
+                                while ($detalle = mysqli_fetch_assoc($detalleEjecuta)) {
+                            ?>
+                                    <tr>
+                                        <td><?php echo $detalle['idSabor']; ?></td>
+                                        <td><?php echo $detalle['Nombre_Pizza']; ?></td>
+                                        <td><?php echo $detalle['NumeroPorciones']; ?></td>
+                                    </tr>
+                            <?php
+                                }
+                            } else {
+                                echo "<tr><td colspan='3'>No hay detalles disponibles</td></tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
                 
             <?php
                     }while($res = mysqli_fetch_array($ejecuta));
@@ -214,6 +265,7 @@
             ?>
         </tbody>
     </table>
+    
     <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <?php 
@@ -297,6 +349,79 @@
         });
   
 
-        
+        //sss
+        document.addEventListener("DOMContentLoaded", function () {
+    // Selecciona todos los botones de "ver detalles"
+    document.querySelectorAll(".toggle-details").forEach(button => {
+        button.addEventListener("click", function () {
+            let pedidoID = this.getAttribute("data-id");
+            let detalleRow = document.getElementById(`detalle-${pedidoID}`);
 
+            // Alternar visibilidad
+            if (detalleRow.style.display === "none" || detalleRow.style.display === "") {
+                detalleRow.style.display = "table-row"; // Muestra la fila
+            } else {
+                detalleRow.style.display = "none"; // Oculta la fila
+            }
+        });
+    });
+});
+
+document.getElementById("catlos").addEventListener("click", function() {
+    this.classList.toggle("expandido");
+});
+
+
+//boton de entregado
+
+$(document).ready(function() {
+    $(".btn-entregada").click(function() {
+        let button = $(this);
+        let idPedido = button.data("id");
+        let nuevoEstado = button.data("entregada") == "1" ? "0" : "1";
+
+        $.ajax({
+            url: "../../controlador/ReservaControlador.php",
+            type: "POST",
+            data: { idPedido: idPedido, entregada: nuevoEstado },
+            dataType: "json",  // 👈 Esto indica a jQuery que la respuesta es JSON
+            success: function(response) {
+                console.log("Respuesta del servidor:", response); // 🔍 Depuración en consola
+
+                if (response.status === "success") { // 👈 Acceder directamente al JSON
+                    Swal.fire({
+                        icon: "success",
+                        title: "Estado Actualizado",
+                        text: response.message, // Mostrar mensaje del servidor
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+
+                    // Actualizar botón visualmente
+                    if (nuevoEstado == "1") {
+                        button.removeClass("btn-warning").addClass("btn-success").text("Entregado");
+                        button.data("entregada", "1");
+                    } else {
+                        button.removeClass("btn-success").addClass("btn-warning").text("No Entregado");
+                        button.data("entregada", "0");
+                    }
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: response.message || "No se pudo actualizar el estado del pedido."
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log("Error en AJAX:", error); // 🔍 Verificar errores en consola
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Hubo un problema con la solicitud."
+                });
+            }
+        });
+    });
+});
 </script>
