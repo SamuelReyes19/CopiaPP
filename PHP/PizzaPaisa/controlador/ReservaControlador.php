@@ -1,5 +1,8 @@
 <?php
-include('../../modelar/ReservaModelo.php');
+
+//include('../../modelar/ReservaModelo.php');
+require_once(__DIR__ . "/../modelar/ReservaModelo.php");
+
 
 $obj = new Reserva();
 if($_POST){
@@ -27,6 +30,22 @@ if(isset($_POST['modifica'])){
     $obj->UsuarioDocumento = $_POST['UsuarioDocumento'];
     $obj->modificar();
     
+}
+
+if (isset($_POST['idPedido']) && isset($_POST['entregada'])) {
+    $idPedido = $_POST['idPedido'];
+    $entregada = $_POST['entregada'];
+
+    // Asignar valores al objeto
+    $obj->idPedido = $idPedido;
+    $obj->Entregada = $entregada;
+
+    // Ejecutar la actualización
+    if ($obj->modificarr()) {
+        echo 'success';
+    } else {
+        echo 'error';
+    }
 }
 
 if(isset($_POST['elimina'])){
@@ -57,7 +76,7 @@ if(isset($_POST['buscar'])){
   $ejecuta=mysqli_query($c,$sql2);
   $res = mysqli_fetch_array($ejecuta);
   }else{
-         $sql2="select * from reserva limit $desde,$maximoRegistros ";
+         $sql2="select * from reserva ORDER BY idPedido DESC";
          $ejecuta=mysqli_query($c,$sql2);
          $res = mysqli_fetch_array($ejecuta);
   }
