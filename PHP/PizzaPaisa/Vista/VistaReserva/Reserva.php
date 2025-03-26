@@ -219,14 +219,14 @@
             <td colspan="7">
                 <div class="detalle-contenedor">
                     <div class="detalle-con">
-                    <h7 class="et7" >Detalles del Pedido ID: <?php echo $pedidoID; ?></h7>
+                   
                     </div>
-                    <table class="table">
+                    <table class="table" style="width: 40%; border-collapse: collapse; margin: 0 auto;">
                         <thead class="detalle-con">
                             <tr>
-                                <th>ID Sabor</th>
-                                <th>Nombre de la Pizza</th>
-                                <th>Cantidad de Porciones</th>
+                                <!---<th>ID Sabor</th> -->
+                                <th style="text-align: center; padding: 8px; border-right: 0;">Nombre de la Pizza</th>
+                                <th style="text-align: center; padding: 8px;">Cantidad de Porciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -240,9 +240,9 @@
                                 while ($detalle = mysqli_fetch_assoc($detalleEjecuta)) {
                             ?>
                                     <tr>
-                                        <td><?php echo $detalle['idSabor']; ?></td>
-                                        <td><?php echo $detalle['Nombre_Pizza']; ?></td>
-                                        <td><?php echo $detalle['NumeroPorciones']; ?></td>
+                                      
+                                        <td style="text-align: center; padding: 8px; border-right: 0;"><?php echo $detalle['Nombre_Pizza']; ?></td>
+                                        <td style="text-align: center; padding: 8px;"><?php echo $detalle['NumeroPorciones']; ?></td>
                                     </tr>
                             <?php
                                 }
