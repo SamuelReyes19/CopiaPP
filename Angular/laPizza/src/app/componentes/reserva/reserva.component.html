@@ -1,26 +1,31 @@
 <div class="container-sm">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="mb-3" >
-            <label for="form-label">Fecha y hora de entrega</label>
-            <input type="datetime-local" step="" class="form-control" id="fechaHoraEntrega"
-                formControlName="FechaHoraEntrega" format="Y-m-d H:i:s">
-        </div>
-        <div formArrayName="items">
-            <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="mb-3">
 
-                <input type="text" class="form-control" id="idSabor" placeholder="sabor" formControlName="idSabor">
+        <!-- Selección de Fecha y Hora -->
+        <input type="datetime-local" class="form-control" id="fechaHoraEntrega" formControlName="FechaHoraEntrega"
+            [min]="minFechaHora" [max]="maxFechaHora" step="1800">
 
-                <input type="number" class="form-control" id="NumeroPorciones" placeholder="numero de porciones" formControlName="NumeroPorciones">
+        <!-- Mostrar todas las pizzas disponibles -->
+        <div formArrayName="pizzas">
+            <div *ngFor="let pizza of pizzas.controls; let i = index" [formGroupName]="i" class="col-md-4 mb-3">
+                <div class="card">
+                    <!-- Imagen de la pizza -->
+                    <img [src]="'assets/pizzas/' + pizzasDisponibles[i].id + '.jpg'" class="card-img-top"
+                        style="height: 60%;" alt="{{ pizzasDisponibles[i].nombre }}">
 
+                    <div class="card-body">
+                        <h5 class="card-title">{{ pizzasDisponibles[i].nombre }}</h5>
+                        <p class="card-text">Precio por porción: $14,000</p>
 
-                <button type="button" class="btn btn-danger mt-2" (click)="removeItem(i)">Eliminar</button>
+                        <!-- Input corregido -->
+                        <input type="number" class="form-control" formControlName="NumeroPorciones" min="0"
+                            placeholder="Número de porciones">
+                    </div>
+                </div>
             </div>
         </div>
 
-
-        <button type="button" class="btn btn-secondary mb-3" (click)="addItem()">Agregar Sabor y Porciones</button>
-
-
-        <button type="submit" class="btn btn-primary">Reservar</button>
+        <!-- Botón de reserva -->
+        <button type="submit" class="btn btn-primary mt-3">Reservar</button>
     </form>
 </div>
