@@ -24,7 +24,7 @@
             <div class="modal-content">
             <form action="" class="" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">SaborIngrediente</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Sabor Ingrediente</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body row g-3">
@@ -79,7 +79,7 @@
                                 <input type="text" name="idIngrediente" id="idIngrediente" class="form-control"  >
                          </div>
                         <div class="col-md-6">
-                                <label for="inputEmail4" class="form-label">Camtidad</label>
+                                <label for="inputEmail4" class="form-label">Cantidad</label>
                                 <input type="number" name="Cantidadkg" id="Cantidadkg" class="form-control"  >
                         </div>
                         
@@ -107,11 +107,11 @@
                 </div>
                 <div class="modal-body" style="color: black;">
                             <div class="col-12">
-                                    <label for="inputAddress" class="form-label">idIngrediente</label>
+                                    <label for="inputAddress" class="form-label">id Ingrediente</label>
                                     <input type="text" name="idIngrediente" id="idIngrediente1" class="form-control"  >
                             </div>
                             <div class="col-12">
-                                    <label for="inputAddress" class="form-label">idSabor</label>
+                                    <label for="inputAddress" class="form-label">id Sabor</label>
                                     <input type="text" name="idSabor" id="idSabor1" class="form-control"  >
                             </div>
                 </div>
@@ -135,8 +135,8 @@
             <button class="btn btn-outline-success" name="buscar" value="buscar" type="submit">Search</button>
             </form>
             
-            <button type="button"  class="btn btn-primary d-flex  m-3  " style="heigth:20px ;" data-bs-toggle="modal" data-bs-target="#Reservar">
-            Reserva
+            <button type="button"  class="btn btn-primary d-flex  m-3  " style="height:20px ;" data-bs-toggle="modal" data-bs-target="#Reservar">
+            Agregar
             </button>
            
         </div>
@@ -145,12 +145,12 @@
          <thead class=" " id="succes" style = "background-color: #239227;">
         <tr style ="color: white;" >
             
-            <th scope="col">idSabor</th>
+            
             <th scope="col">Sabor</th>
-            <th scope="col">idIngrediente</th>
+            
             <th scope="col">Ingrediente</th>
             <th scope="col">Cantidadkg</th>
-            <th scope="col">Accion</th>
+            <th scope="col"></th>
             
 
          </tr>
@@ -166,9 +166,9 @@
                 <tr>
                 
                 
-                <td><?php echo $res[0]?></td>
+                
                 <td><?php echo $res[1]?></td>
-                <td><?php echo $res[2]?></td>
+                
                 <td><?php echo $res[3]?></td>
                 <td><?php echo $res[4]?></td>
                 
@@ -198,10 +198,10 @@
                     if($pagina!=1){
                     ?>
                     <li class="page-item ">
-                        <a class="page-link" href="?pagina=<?php echo 1; ?>"><</a>
+                        <a class="page-link" href="?pagina=<?php echo 1; ?>"><<</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="?pagina=<?php echo $pagina-1; ?>"><<</a>
+                        <a class="page-link" href="?pagina=<?php echo $pagina-1; ?>"><</a>
                     </li>
                     <?php
                     }
@@ -217,10 +217,10 @@
                     ?>
                     
                     <li class="page-item">
-                        <a class="page-link" href="?pagina=<?php echo $pagina+1; ?>">>></a>
+                        <a class="page-link" href="?pagina=<?php echo $pagina+1; ?>">></a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="?pagina=<?php echo $totalPaginas; ?>">></a>
+                        <a class="page-link" href="?pagina=<?php echo $totalPaginas; ?>">>></a>
                     </li>
                     <?php
                     }
