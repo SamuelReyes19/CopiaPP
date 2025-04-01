@@ -170,7 +170,8 @@
             <th scope="col">Entregada</th>
             <th scope="col">FechaHoraEntrega</th>
             <th scope="col">PrecioTotal</th>
-            <th scope="col">Documento</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
             <th scope="col">Accion</th>
            
             
@@ -202,7 +203,8 @@
                 </td>
                 <td><?php echo $res[3]?></td>
                 <td><?php echo $res[4]?></td>
-                <td><?php echo $res[5]?></td>
+                <td><?php echo $res[6]?></td>
+                <td><?php echo $res[7]?></td>
                 
                 <td><form  class="d-flex  justify-content-center align-items-center" action="" method="post">
                 <button type="button" class="btn btn-sm btn-success toggle-details" data-id="<?php echo $pedidoID; ?>">
@@ -216,10 +218,9 @@
                 
                 </tr>
                 <tr class="detalle-pedido" id="detalle-<?php echo $pedidoID; ?>" style="display:none;">
-            <td colspan="7">
-                <div class="detalle-contenedor">
+            <td colspan="8">
+                <div class="detalle-contenedor" style="margin:auto 25%; flex-direction: center;">
                     <div class="detalle-con">
-                    <h7 class="et7" >Detalles del Pedido ID: <?php echo $pedidoID; ?></h7>
                     </div>
                     <table class="table">
                         <thead class="detalle-con">
@@ -267,27 +268,27 @@
     </table>
     
     <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
+               <ul class="pagination justify-content-center">
                     <?php 
-                    if($pagina!=1){
+                    //if($pagina!=1){
                     ?>
-                    <li class="page-item ">
-                        <a class="page-link" href="?pagina=<?php echo 1; ?>"><</a>
+                    <!--- <li class="page-item ">
+                      <a class="page-link" href="?pagina=<?php echo 1; ?>"><</a>
                     </li>
                     <li class="page-item">
                         <a class="page-link" href="?pagina=<?php echo $pagina-1; ?>"><<</a>
                     </li>
-                    <?php
-                    }
-                    for($i=1; $i<=$totalPaginas; $i++){
-                        if($i==$pagina){
-                            echo'<li class="page-item active" aria-current="page"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>';    
-                        }
-                        else{
-                            echo'<li class="page-item "><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>'; 
-                        }
-                    }
-                    if($pagina !=$totalPaginas){
+                    //<?php
+                    //} 
+                    // for($i=1; $i<=$totalPaginas; $i++){
+                        //if($i==$pagina){
+                          //  echo'<li class="page-item active" aria-current="page"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>';    
+                       // }
+                        //else{
+                         //   echo'<li class="page-item "><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>'; 
+                       // }
+                    //}
+                   // if($pagina !=$totalPaginas){
                     ?>
                     
                     <li class="page-item">
@@ -297,7 +298,7 @@
                         <a class="page-link" href="?pagina=<?php echo $totalPaginas; ?>">></a>
                     </li>
                     <?php
-                    }
+                   // }
                     ?>
                 </ul>
             </nav>
