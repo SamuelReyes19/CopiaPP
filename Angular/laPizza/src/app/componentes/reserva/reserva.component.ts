@@ -16,7 +16,7 @@ export class ReservaComponent {
   maxFechaHora: string = '';
 
   pizzasDisponibles = [
-    { id: 'Crt', nombre: 'Pizza Carne Tradicional' },
+    { id: 'Crt', nombre: 'Pizza Carne' },
     { id: 'PcBBQ', nombre: 'Pizza de CarneBBQ' },
     { id: 'Phw', nombre: 'Pizza Hawaiana' },
     { id: 'Pllc', nombre: 'Pollo Champiñones' },
