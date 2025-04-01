@@ -2,30 +2,41 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
         <!-- Selección de Fecha y Hora -->
-        <input type="datetime-local" class="form-control" id="fechaHoraEntrega" formControlName="FechaHoraEntrega"
+        <input type="datetime-local" class="form-control mt-4" id="fechaHoraEntrega" formControlName="FechaHoraEntrega"
             [min]="minFechaHora" [max]="maxFechaHora" step="1800">
 
         <!-- Mostrar todas las pizzas disponibles -->
         <div formArrayName="pizzas">
-            <div *ngFor="let pizza of pizzas.controls; let i = index" [formGroupName]="i" class="col-md-4 mb-3">
-                <div class="card">
-                    <!-- Imagen de la pizza -->
-                    <img [src]="'assets/pizzas/' + pizzasDisponibles[i].id + '.jpg'" class="card-img-top"
-                        style="height: 60%;" alt="{{ pizzasDisponibles[i].nombre }}">
+<div class="container">
+    <div class="row row-cols-5 mt-4">
+        <div *ngFor="let pizza of pizzas.controls; let i = index" [formGroupName]="i" class="col mb-3 d-flex">
+            <div class="card w-100">
+                <!-- Imagen de la pizza -->
+                <img [src]="'../../Imagenes/' + pizzasDisponibles[i].id + '.jpg'"
+                class="card-img-top"
+                style="height: 60%;"
+                alt="{{ pizzasDisponibles[i].nombre }}"
+                onerror="this.onerror=null; this.src='../../Imagenes/' + this.getAttribute('data-id') + '.jpeg'"
+                [attr.data-id]="pizzasDisponibles[i].id">                     
 
-                    <div class="card-body">
-                        <h5 class="card-title">{{ pizzasDisponibles[i].nombre }}</h5>
-                        <p class="card-text">Precio por porción: $14,000</p>
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ pizzasDisponibles[i].nombre }}</h5>
 
-                        <!-- Input corregido -->
-                        <input type="number" class="form-control" formControlName="NumeroPorciones" min="0"
-                            placeholder="Número de porciones">
-                    </div>
+                    <!-- Input de porciones -->
+                    <input type="number" class="form-control" formControlName="NumeroPorciones" min="0"
+                        placeholder="Número de porciones">
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+        </div>
+        
 
         <!-- Botón de reserva -->
-        <button type="submit" class="btn btn-primary mt-3">Reservar</button>
+        <div class="text-center mt-3 mb-3">
+            <button class="btn btn-primary">Reservar</button>
+        </div>        
     </form>
 </div>
