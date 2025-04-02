@@ -14,6 +14,7 @@ export class ReservaComponent {
   form: FormGroup;
   minFechaHora: string = '';
   maxFechaHora: string = '';
+  resumenPedido: any = {};
 
   pizzasDisponibles = [
     { id: 'Crt', nombre: 'Pizza Carne' },
@@ -61,41 +62,55 @@ export class ReservaComponent {
     this.maxFechaHora = mañana.toISOString().slice(0, 16);
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      const datos = this.form.value;
-      const pizzasSeleccionadas = datos.pizzas.filter((pizza: { NumeroPorciones: number }) => pizza.NumeroPorciones > 0);
+  prepararResumen() {
+    const datos = this.form.value;
+    const pizzasSeleccionadas = datos.pizzas
+      .map((pizza: any, index: number) => ({
+        ...pizza,
+        nombre: this.pizzasDisponibles[index].nombre
+      }))
+      .filter((pizza: { NumeroPorciones: number }) => pizza.NumeroPorciones > 0);
 
-      if (pizzasSeleccionadas.length === 0) {
-        alert("Debe seleccionar al menos una pizza con porciones.");
-        return;
-      }
-
-      const TotalPrecio = pizzasSeleccionadas.reduce((acc: number, item: { NumeroPorciones: number }) => acc + item.NumeroPorciones * 14000, 0);
-
-      this.http.post('http://127.0.0.1:8000/api/reserva', {
-        FechaHoraEntrega: datos.FechaHoraEntrega,
-        PrecioTotal: TotalPrecio,
-        UsuarioDocumento: localStorage.getItem('documento')
-      }).subscribe({
-        next: (response) => {
-          console.log('Reserva creada con éxito', response);
-          alert("Reserva exitosa");
-
-          pizzasSeleccionadas.forEach((item: any) => {
-            this.http.post('http://127.0.0.1:8000/api/linea', item).subscribe({
-              next: (res) => console.log('Item enviado exitosamente', res),
-              error: (err) => console.log('Error al enviar el item', err)
-            });
-          });
-        },
-        error: (error) => {
-          console.log('Error al enviar la reserva', error);
-        }
-      });
-
-    } else {
-      console.log('Formulario inválido');
+    if (pizzasSeleccionadas.length === 0) {
+      alert("Debe seleccionar al menos una pizza con porciones.");
+      return;
     }
+
+    const TotalPrecio = pizzasSeleccionadas.reduce((acc: number, item: { NumeroPorciones: number }) => acc + item.NumeroPorciones * 14000, 0);
+
+    this.resumenPedido = {
+      FechaHoraEntrega: datos.FechaHoraEntrega,
+      pizzas: pizzasSeleccionadas,
+      TotalPrecio: TotalPrecio
+    };
+  }
+
+  confirmarReserva() {
+    if (!this.resumenPedido.FechaHoraEntrega || this.resumenPedido.pizzas.length === 0) {
+      alert("Error: No hay datos válidos para la reserva.");
+      return;
+    }
+
+    this.http.post('http://127.0.0.1:8000/api/reserva', {
+      FechaHoraEntrega: this.resumenPedido.FechaHoraEntrega,
+      PrecioTotal: this.resumenPedido.TotalPrecio,
+      UsuarioDocumento: localStorage.getItem('documento')
+    }).subscribe({
+      next: (response) => {
+        console.log('Reserva creada con éxito', response);
+        alert("Reserva exitosa");
+
+        this.resumenPedido.pizzas.forEach((item: any) => {
+          this.http.post('http://127.0.0.1:8000/api/linea', item).subscribe({
+            next: (res) => console.log('Item enviado exitosamente', res),
+            error: (err) => console.log('Error al enviar el item', err)
+          });
+        });
+
+      },
+      error: (error) => {
+        console.log('Error al enviar la reserva', error);
+      }
+    });
   }
 }
