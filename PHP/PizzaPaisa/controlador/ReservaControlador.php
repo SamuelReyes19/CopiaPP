@@ -76,7 +76,7 @@ if(isset($_POST['buscar'])){
   $ejecuta=mysqli_query($c,$sql2);
   $res = mysqli_fetch_array($ejecuta);
   }else{
-         $sql2="select r.idPedido, r.FechaHoraRealizacio, r.Entregada, r.FechaHoraEntrega, r.PrecioTotal, 
+         $sql2="select r.idPedido, r.created_at, r.Entregada, r.FechaHoraEntrega, r.PrecioTotal, 
         u.UsuarioDocumento, u.UsuarioPrimerNombre, u.UsuarioApellido from reserva r
         inner join usuario u ON r.UsuarioDocumento = u.UsuarioDocumento
         ORDER BY r.idPedido DESC";

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reserva',
@@ -98,7 +99,13 @@ export class ReservaComponent {
     }).subscribe({
       next: (response) => {
         console.log('Reserva creada con éxito', response);
-        alert("Reserva exitosa");
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Reserva creada con exito",
+          showConfirmButton: false,
+          timer: 3000
+        });
 
         this.resumenPedido.pizzas.forEach((item: any) => {
           this.http.post('http://127.0.0.1:8000/api/linea', item).subscribe({

@@ -94,10 +94,11 @@ import {
   provideNetlifyLoader,
   registerLocaleData,
   setRootDomAdapter
-} from "./chunk-MURLI5HD.js";
+} from "./chunk-66KTVFZX.js";
 import {
   IMAGE_CONFIG
-} from "./chunk-XAD5S4WX.js";
+} from "./chunk-XE3BRNWO.js";
+import "./chunk-WDMUDEB6.js";
 export {
   APP_BASE_HREF,
   AsyncPipe,
