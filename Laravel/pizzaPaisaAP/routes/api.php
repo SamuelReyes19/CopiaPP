@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\usuarioControlador;
 use App\Http\Controllers\ReservaControlador;
 use App\Http\Controllers\LineaControlador;
+use App\Http\Controllers\EstadisticasPizzeriaControlador;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +30,5 @@ Route::put('/reserva', [ReservaControlador::class,'updeit']);
 Route::delete('/reserva', [ReservaControlador::class,'dilit']);
 Route::get('/linea', [LineaControlador::class, 'index']);
 Route::post('/linea', [LineaControlador::class, 'store']);
+
+Route::get('/top-pizzas-vendidas', [EstadisticasPizzeriaControlador::class, 'topPizzasVendidas']);
