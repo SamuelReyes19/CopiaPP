@@ -28,3 +28,5 @@ Route::put('/reserva', [ReservaControlador::class,'updeit']);
 Route::delete('/reserva', [ReservaControlador::class,'dilit']);
 Route::get('/linea', [LineaControlador::class, 'index']);
 Route::post('/linea', [LineaControlador::class, 'store']);
+Route::post('/orden-compra', [OrdenCompraControlador::class, 'store']);
+Route::post('/orden-ingrediente', [OrdenIngredienteControlador::class, 'store']);
