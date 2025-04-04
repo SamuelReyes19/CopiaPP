@@ -51,7 +51,7 @@ class EstadisticasPizzeriaControlador extends Controller
 
     public function promedioValorPorOrden()
     {
-    $promedio = (float) DB::table('reserva')->avg('PrecioTotal');
+    $promedio =  DB::table('reserva')->avg('PrecioTotal');
 
     return response()->json([
         'promedio' => $promedio
@@ -82,12 +82,51 @@ class EstadisticasPizzeriaControlador extends Controller
     public function promedioPorcionesPorOrden()
     {
         $totalPorciones = LineaModelo::sum('NumeroPorciones'); // Suma total de porciones pedidas
-        $totalOrdenes = Pedido::count(); // Total de órdenes registradas
+        $totalOrdenes = reservaModelo::count(); // Total de órdenes registradas
 
         $promedio = $totalOrdenes > 0 ? $totalPorciones / $totalOrdenes : 0;
 
         return response()->json([
             'promedioPorcionesPorOrden' => round($promedio, 2) // Redondeado a 2 decimales
+        ]);
+    }
+
+    public function totalOrdenesPorDia()
+    {
+        $ordenesPorDia = reservaModelo::selectRaw('DATE(created_at) as fecha, COUNT(*) as total')
+            ->groupByRaw('DATE(created_at)')
+            ->orderBy('fecha')
+            ->get();
+
+        return response()->json([
+
+            'ordenesPorDia' => $ordenesPorDia
+        ]);
+    }
+
+    public function totalOrdenesPorMes()
+    {
+    $ordenesPorMes = reservaModelo::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as mes, COUNT(*) as total')
+        ->groupByRaw('DATE_FORMAT(created_at, "%Y-%m")')
+        ->orderBy('mes')
+        ->get();
+
+    return response()->json([
+        'ordenesPorMes' => $ordenesPorMes
+    ]);
+    }
+
+    public function ventasPorSabor()
+    {
+        $ventasPorSabor = DB::table('linea') // Usa DB::table() para evitar problemas con modelos
+            ->join('sabor', 'linea.idSabor', '=', 'sabor.idSabor')
+            ->select('sabor.Nombre_Pizza', DB::raw('SUM(linea.NumeroPorciones) as totalPorciones'))
+            ->groupBy('sabor.Nombre_Pizza')
+            ->orderByDesc('totalPorciones')
+            ->get();
+    
+        return response()->json([
+            'ventasPorSabor' => $ventasPorSabor
         ]);
     }
 }

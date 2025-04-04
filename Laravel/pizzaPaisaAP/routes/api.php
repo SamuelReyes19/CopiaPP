@@ -35,3 +35,7 @@ Route::get('/top-pizzas-vendidas', [EstadisticasPizzeriaControlador::class, 'top
 Route::get('/promedio-valor-orden', [EstadisticasPizzeriaControlador::class, 'promedioValorPorOrden']);
 Route::get('/total-porciones-vendidas', [EstadisticasPizzeriaControlador::class, 'totalPorcionesVendidas']);
 Route::get('/total-ordenes', [EstadisticasPizzeriaControlador::class, 'totalDeOrdenes']);
+Route::get('/promedio-porcion-orden', [EstadisticasPizzeriaControlador::class, 'promedioPorcionesPorOrden']);
+Route::get('/total-ordenes-por-dia', [EstadisticasPizzeriaControlador::class, 'totalOrdenesPorDia']);
+Route::get('/total-ordenes-por-mes', [EstadisticasPizzeriaControlador::class, 'totalOrdenesPorMes']);
+Route::get('/ventas-por-sabor', [EstadisticasPizzeriaControlador::class, 'ventasPorSabor']);
