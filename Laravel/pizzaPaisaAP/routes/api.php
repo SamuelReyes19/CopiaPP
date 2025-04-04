@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\usuarioControlador;
 use App\Http\Controllers\ReservaControlador;
 use App\Http\Controllers\LineaControlador;
+use App\Http\Controllers\OrdenIngredienteControlador;
 
 /*
 |--------------------------------------------------------------------------
