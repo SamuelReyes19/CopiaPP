@@ -48,4 +48,46 @@ class EstadisticasPizzeriaControlador extends Controller
         // Devolver los resultados en formato JSON
         return response()->json($result, 200);
     }
+
+    public function promedioValorPorOrden()
+    {
+    $promedio = (float) DB::table('reserva')->avg('PrecioTotal');
+
+    return response()->json([
+        'promedio' => $promedio
+    ]);
+    }
+
+        public function totalPorcionesVendidas()
+    {
+        
+        $totalPorciones = lineaModelo::sum('NumeroPorciones');
+
+        return response()->json([
+            'total' => $totalPorciones
+        ]);
+        
+    }
+
+    public function totalDeOrdenes(){
+        
+
+        $totalOrdenes = lineaModelo::count('idPedido');
+        return response()->json([
+            'totalOrdenes'=> $totalOrdenes
+        ]);
+        
+    }
+
+    public function promedioPorcionesPorOrden()
+    {
+        $totalPorciones = LineaModelo::sum('NumeroPorciones'); // Suma total de porciones pedidas
+        $totalOrdenes = Pedido::count(); // Total de órdenes registradas
+
+        $promedio = $totalOrdenes > 0 ? $totalPorciones / $totalOrdenes : 0;
+
+        return response()->json([
+            'promedioPorcionesPorOrden' => round($promedio, 2) // Redondeado a 2 decimales
+        ]);
+    }
 }

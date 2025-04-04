@@ -32,3 +32,6 @@ Route::get('/linea', [LineaControlador::class, 'index']);
 Route::post('/linea', [LineaControlador::class, 'store']);
 
 Route::get('/top-pizzas-vendidas', [EstadisticasPizzeriaControlador::class, 'topPizzasVendidas']);
+Route::get('/promedio-valor-orden', [EstadisticasPizzeriaControlador::class, 'promedioValorPorOrden']);
+Route::get('/total-porciones-vendidas', [EstadisticasPizzeriaControlador::class, 'totalPorcionesVendidas']);
+Route::get('/total-ordenes', [EstadisticasPizzeriaControlador::class, 'totalDeOrdenes']);
