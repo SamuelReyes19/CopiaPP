@@ -51,11 +51,14 @@ class EstadisticasPizzeriaControlador extends Controller
 
     public function promedioValorPorOrden()
     {
-    $promedio =  DB::table('reserva')->avg('PrecioTotal');
+        $promedio = DB::table('reserva')->avg('PrecioTotal');
 
-    return response()->json([
-        'promedio' => $promedio
-    ]);
+        // Quita los ceros innecesarios con rtrim
+        $formateado = rtrim(rtrim(number_format($promedio, 2, '.', ''), '0'), '.');
+        
+        return response()->json([
+            'promedio' => $formateado
+        ]);
     }
 
         public function totalPorcionesVendidas()
@@ -129,4 +132,15 @@ class EstadisticasPizzeriaControlador extends Controller
             'ventasPorSabor' => $ventasPorSabor
         ]);
     }
+
+    public function totalIngresos()
+{
+    $total = DB::table('reserva')
+        ->where('Entregada', 1) // solo contar las órdenes entregadas
+        ->sum('PrecioTotal');
+
+    return response()->json([
+        'totalIngresos' => $total
+    ]);
+}
 }

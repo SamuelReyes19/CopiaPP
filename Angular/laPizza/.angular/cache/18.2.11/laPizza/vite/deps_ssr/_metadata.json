@@ -1,55 +1,61 @@
 {
-  "hash": "196f105e",
-  "configHash": "0a618337",
-  "lockfileHash": "93850daf",
-  "browserHash": "24e286d8",
+  "hash": "b502b511",
+  "configHash": "b0e413f1",
+  "lockfileHash": "ea778ebb",
+  "browserHash": "3441a10a",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "0ea9d51a",
+      "fileHash": "f1e9eb6c",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "9a48e432",
+      "fileHash": "a6b57f6c",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "58f46704",
+      "fileHash": "ec2997a6",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "fa2820ab",
+      "fileHash": "9285cdfe",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "36a7f32e",
+      "fileHash": "62bee5f5",
       "needsInterop": false
     },
     "@angular/platform-server": {
       "src": "../../../../../../node_modules/@angular/platform-server/fesm2022/platform-server.mjs",
       "file": "@angular_platform-server.js",
-      "fileHash": "0113da37",
+      "fileHash": "d02d3244",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "f27a515c",
+      "fileHash": "b98e7188",
+      "needsInterop": false
+    },
+    "ng2-charts": {
+      "src": "../../../../../../node_modules/ng2-charts/fesm2015/ng2-charts.mjs",
+      "file": "ng2-charts.js",
+      "fileHash": "d3d6b718",
       "needsInterop": false
     },
     "sweetalert2": {
       "src": "../../../../../../node_modules/sweetalert2/dist/sweetalert2.esm.all.js",
       "file": "sweetalert2.js",
-      "fileHash": "45525d66",
+      "fileHash": "a1076093",
       "needsInterop": false
     }
   },

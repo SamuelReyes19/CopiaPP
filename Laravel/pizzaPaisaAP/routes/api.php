@@ -39,3 +39,4 @@ Route::get('/promedio-porcion-orden', [EstadisticasPizzeriaControlador::class, '
 Route::get('/total-ordenes-por-dia', [EstadisticasPizzeriaControlador::class, 'totalOrdenesPorDia']);
 Route::get('/total-ordenes-por-mes', [EstadisticasPizzeriaControlador::class, 'totalOrdenesPorMes']);
 Route::get('/ventas-por-sabor', [EstadisticasPizzeriaControlador::class, 'ventasPorSabor']);
+Route::get('/total-ingresos', [EstadisticasPizzeriaControlador::class, 'totalIngresos']);
