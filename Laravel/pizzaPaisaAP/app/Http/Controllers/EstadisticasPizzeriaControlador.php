@@ -96,28 +96,65 @@ class EstadisticasPizzeriaControlador extends Controller
 
     public function totalOrdenesPorDia()
     {
-        $ordenesPorDia = reservaModelo::selectRaw('DATE(created_at) as fecha, COUNT(*) as total')
-            ->groupByRaw('DATE(created_at)')
-            ->orderBy('fecha')
+        // Obtener el total de órdenes para viernes, sábado y domingo
+        $ordenesPorDiaFinDeSemana = reservaModelo::selectRaw(
+                'DAYOFWEEK(created_at) as dia_semana, COUNT(*) as total'
+            )
+            ->whereRaw('DAYOFWEEK(created_at) IN (6, 7, 1)')  // 6 = Viernes, 7 = Sábado, 1 = Domingo
+            ->groupByRaw('DAYOFWEEK(created_at)')  // Agrupar por día de la semana
             ->get();
-
+    
+        // Inicializamos los totales de los días
+        $resultados = [
+            'viernes' => 0,
+            'sabado' => 0,
+            'domingo' => 0
+        ];
+    
+        // Acumulamos las órdenes por cada día
+        foreach ($ordenesPorDiaFinDeSemana as $orden) {
+            if ($orden->dia_semana == 6) {
+                $resultados['viernes'] = $orden->total;
+            } elseif ($orden->dia_semana == 7) {
+                $resultados['sabado'] = $orden->total;
+            } elseif ($orden->dia_semana == 1) {
+                $resultados['domingo'] = $orden->total;
+            }
+        }
+    
+        // Determinamos cuál día tiene más ventas en general
+        $maxVentas = max($resultados['viernes'], $resultados['sabado'], $resultados['domingo']);
+        
+        // Guardamos el día con más ventas
+        if ($maxVentas == $resultados['viernes']) {
+            $masVendido = 'Viernes';
+        } elseif ($maxVentas == $resultados['sabado']) {
+            $masVendido = 'Sábado';
+        } else {
+            $masVendido = 'Domingo';
+        }
+    
         return response()->json([
-
-            'ordenesPorDia' => $ordenesPorDia
+            'resultados' => $resultados,
+            'diaMasVendido' => $masVendido
         ]);
     }
 
     public function totalOrdenesPorMes()
-    {
-    $ordenesPorMes = reservaModelo::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as mes, COUNT(*) as total')
-        ->groupByRaw('DATE_FORMAT(created_at, "%Y-%m")')
-        ->orderBy('mes')
+{
+    // Obtener el total de órdenes por mes, sin tener en cuenta el año
+    $ordenesPorMes = reservaModelo::selectRaw(
+            'MONTH(created_at) as month, COUNT(*) as total'
+        )
+        ->groupByRaw('MONTH(created_at)')  // Agrupar solo por mes
+        ->orderBy('total', 'desc')         // Ordenar por el total de órdenes, de mayor a menor
         ->get();
 
+    // Devolver la respuesta en el formato adecuado para el gráfico
     return response()->json([
         'ordenesPorMes' => $ordenesPorMes
     ]);
-    }
+}
 
     public function ventasPorSabor()
     {

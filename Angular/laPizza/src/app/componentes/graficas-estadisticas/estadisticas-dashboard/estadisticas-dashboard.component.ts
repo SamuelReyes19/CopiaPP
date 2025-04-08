@@ -29,7 +29,7 @@ export class EstadisticasDashboardComponent implements OnInit {
   ventasPorSaborChart!: ChartData<'bar'>;
   ventasPorSaborOptions: ChartOptions = { responsive: true };
 
-  topPizzasVendidasChart!: ChartData<'bar'>;
+  /**topPizzasVendidasChart!: ChartData<'bar'>;
   topPizzasOptions: ChartOptions = {
     responsive: true,
     plugins: {
@@ -39,7 +39,7 @@ export class EstadisticasDashboardComponent implements OnInit {
         text: 'Top Pizzas Vendidas'
       }
     }
-  };
+  };**/
 
   constructor(private http: HttpClient) {}
 
@@ -48,7 +48,7 @@ export class EstadisticasDashboardComponent implements OnInit {
     this.cargarOrdenesPorDia();
     this.cargarOrdenesPorMes();
     this.cargarVentasPorSabor();
-    this.cargarTopPizzasVendidas();
+    /**this.cargarTopPizzasVendidas();**/
   }
 
   cargarResumen() {
@@ -61,12 +61,18 @@ export class EstadisticasDashboardComponent implements OnInit {
 
   cargarOrdenesPorDia() {
     this.http.get<any>('http://localhost:8000/api/total-ordenes-por-dia').subscribe(r => {
-      const data = r.ordenesPorDia;
+      // Accedemos a los datos de "resultados" que contienen los totales por día
+      const data = r.resultados;
+  
+      // Convertimos esos datos a un formato adecuado para el gráfico
+      const labels = ['Viernes', 'Sábado', 'Domingo'];
+      const dataValues = [data.viernes, data.sabado, data.domingo];
+  
       this.ordenesPorDiaChart = {
-        labels: data.map((d: any) => d.fecha),
+        labels: labels,  // Los días de la semana como etiquetas
         datasets: [{
           label: 'Órdenes por Día',
-          data: data.map((d: any) => d.total),
+          data: dataValues,  // Los totales de órdenes para cada día
           backgroundColor: '#3B82F6'
         }]
       };
@@ -76,11 +82,22 @@ export class EstadisticasDashboardComponent implements OnInit {
   cargarOrdenesPorMes() {
     this.http.get<any>('http://localhost:8000/api/total-ordenes-por-mes').subscribe(r => {
       const data = r.ordenesPorMes;
+  
+      // Nombres de los meses
+      const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+      
+      // Crear las etiquetas de los meses (convertir los números en nombres)
+      const labels = data.map((d: any) => monthNames[d.month - 1]); // Restamos 1 porque los meses en JavaScript van de 0 a 11
+  
+      // Obtener los datos totales de órdenes por mes
+      const dataValues = data.map((d: any) => d.total);
+  
+      // Configuración del gráfico
       this.ordenesPorMesChart = {
-        labels: data.map((d: any) => d.mes),
+        labels: labels,  // Etiquetas con los nombres de los meses
         datasets: [{
           label: 'Órdenes por Mes',
-          data: data.map((d: any) => d.total),
+          data: dataValues,  // Datos de las órdenes por mes
           borderColor: '#10B981',
           fill: true,
           tension: 0.4
@@ -97,13 +114,13 @@ export class EstadisticasDashboardComponent implements OnInit {
         datasets: [{
           label: 'Ventas por Sabor',
           data: data.map((d: any) => d.totalPorciones),
-          backgroundColor: '#F59E0B'
+          backgroundColor: ['#42A5F5', '#66BB6A', '#FFA726', '#FF7043', '#AB47BC']
         }]
       };
     });
   }
 
-  cargarTopPizzasVendidas() {
+  /**cargarTopPizzasVendidas() {
     this.http.get<any>('http://localhost:8000/api/top-pizzas-vendidas').subscribe(data => {
       if (!data || data.length === 0) {
         console.warn('No hay datos de pizzas vendidas.');
@@ -119,7 +136,7 @@ export class EstadisticasDashboardComponent implements OnInit {
         }]
       };
     });
-  }
+  }**/
   
   
 }
