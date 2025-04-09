@@ -6,6 +6,7 @@ use App\Http\Controllers\usuarioControlador;
 use App\Http\Controllers\ReservaControlador;
 use App\Http\Controllers\LineaControlador;
 use App\Http\Controllers\EstadisticasPizzeriaControlador;
+use App\Http\Controllers\OrdenIngredienteControlador;
 
 
 /*
@@ -24,10 +25,12 @@ Route::post('/pizzapaisa',[usuarioControlador::class, 'store']);
 Route::get('/pizzapaisa/{UsuarioDocumento}',[usuarioControlador::class, 'show']);
 Route::put('/pizzapaisa/{UsuarioDocumento}',[usuarioControlador::class, 'update']);
 Route::delete('/pizzapaisa/{UsuarioDocumento}',[usuarioControlador::class,'destroy']);
+
 Route::post('/reserva', [ReservaControlador::class, 'store']);
 Route::get('/reserva', [ReservaControlador::class, 'index']);
 Route::put('/reserva', [ReservaControlador::class,'updeit']);
 Route::delete('/reserva', [ReservaControlador::class,'dilit']);
+
 Route::get('/linea', [LineaControlador::class, 'index']);
 Route::post('/linea', [LineaControlador::class, 'store']);
 
@@ -40,3 +43,6 @@ Route::get('/total-ordenes-por-dia', [EstadisticasPizzeriaControlador::class, 't
 Route::get('/total-ordenes-por-mes', [EstadisticasPizzeriaControlador::class, 'totalOrdenesPorMes']);
 Route::get('/ventas-por-sabor', [EstadisticasPizzeriaControlador::class, 'ventasPorSabor']);
 Route::get('/total-ingresos', [EstadisticasPizzeriaControlador::class, 'totalIngresos']);
+
+Route::post('/orden-compra', [OrdenCompraControlador::class, 'store']);
+Route::post('/orden-ingrediente', [OrdenIngredienteControlador::class, 'store']);
