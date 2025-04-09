@@ -7,10 +7,11 @@ import { PieComponent } from './componentes/pie/pie.component';
 import { FormularioComponent } from './componentes/formulario/formulario.component';
 import { IniciosesionComponent } from './componentes/iniciosesion/iniciosesion.component';
 import { SafeUrlPipe } from './componentesPhp/pipes/safe-url.pipe';
+import { NgChartsModule } from 'ng2-charts';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [SafeUrlPipe, CommonModule,RouterOutlet,CabeceraComponent,PieComponent,FormularioComponent,IniciosesionComponent],
+  imports: [NgChartsModule,SafeUrlPipe, CommonModule,RouterOutlet,CabeceraComponent,PieComponent,FormularioComponent,IniciosesionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
