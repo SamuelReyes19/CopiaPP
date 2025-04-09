@@ -23,10 +23,10 @@
       <h3>Total Ingresos</h3>
     </div>
   </div>
-</div>
+</div> <!-- ✅ cierre correcto del dashboard-container -->
 
-
-<div class="charts-grid">
+<div class="charts-grid-row">
+  <!-- Órdenes por Día -->
   <div class="chart-wrapper">
     <h3 class="text-lg font-semibold mb-2 text-center">Órdenes por Día</h3>
     <div class="chart-container">
@@ -38,17 +38,7 @@
     </div>
   </div>
 
-  <div class="chart-wrapper">
-    <h3 class="text-lg font-semibold mb-2 text-center">Órdenes por Mes</h3>
-    <div class="chart-container">
-      <canvas *ngIf="ordenesPorMesChart" baseChart
-              [data]="ordenesPorMesChart"
-              [type]="'line'"
-              [options]="ordenesPorMesOptions">
-      </canvas>
-    </div>
-  </div>
-
+  <!-- Ventas por Sabor -->
   <div class="chart-wrapper">
     <h3 class="text-lg font-semibold mb-2 text-center">Ventas por Sabor</h3>
     <div class="chart-container">
@@ -60,5 +50,15 @@
     </div>
   </div>
 
-
-</div>
+  <!-- Órdenes por Mes (ocupa 2 columnas) -->
+  <div class="chart-wrapper span-2">
+    <h3 class="text-lg font-semibold mb-2 text-center">Órdenes por Mes</h3>
+    <div class="chart-container">
+      <canvas *ngIf="ordenesPorMesChart" baseChart
+              [data]="ordenesPorMesChart"
+              [type]="'line'"
+              [options]="ordenesPorMesOptions">
+      </canvas>
+    </div>
+  </div>
+</div> 

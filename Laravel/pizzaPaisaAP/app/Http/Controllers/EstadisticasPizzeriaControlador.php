@@ -141,20 +141,29 @@ class EstadisticasPizzeriaControlador extends Controller
     }
 
     public function totalOrdenesPorMes()
-{
-    // Obtener el total de órdenes por mes, sin tener en cuenta el año
-    $ordenesPorMes = reservaModelo::selectRaw(
-            'MONTH(created_at) as month, COUNT(*) as total'
-        )
-        ->groupByRaw('MONTH(created_at)')  // Agrupar solo por mes
-        ->orderBy('total', 'desc')         // Ordenar por el total de órdenes, de mayor a menor
-        ->get();
-
-    // Devolver la respuesta en el formato adecuado para el gráfico
-    return response()->json([
-        'ordenesPorMes' => $ordenesPorMes
-    ]);
-}
+    {
+        // Paso 1: Obtener las ventas agrupadas por mes
+        $ventasPorMes = reservaModelo::selectRaw('MONTH(created_at) as month, SUM(PrecioTotal) as total')
+            ->groupByRaw('MONTH(created_at)')
+            ->get()
+            ->keyBy('month');
+    
+        // Paso 2: Generar los 12 meses del año con valores, aunque no existan datos
+        $meses = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $meses[] = [
+                'month' => $i,
+                'total' => (float) ($ventasPorMes->get($i)->total ?? 0)
+            ];
+        }
+    
+        // Paso 3: (opcional) Ordenar de mayor a menor
+        usort($meses, fn($a, $b) => $b['total'] <=> $a['total']);
+    
+        return response()->json([
+            'ventasPorMes' => $meses
+        ]);
+    }
 
     public function ventasPorSabor()
     {

@@ -61,18 +61,68 @@ export class EstadisticasDashboardComponent implements OnInit {
 
   cargarOrdenesPorDia() {
     this.http.get<any>('http://localhost:8000/api/total-ordenes-por-dia').subscribe(r => {
-      // Accedemos a los datos de "resultados" que contienen los totales por día
       const data = r.resultados;
   
-      // Convertimos esos datos a un formato adecuado para el gráfico
       const labels = ['Viernes', 'Sábado', 'Domingo'];
       const dataValues = [data.viernes, data.sabado, data.domingo];
   
+      this.ordenesPorDiaOptions = { // 👈 usar this
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: {
+              color: '#ffffff',
+              font: {
+                size: 14,
+                weight: 'bold'
+              }
+            }
+          },
+          tooltip: {
+            bodyFont: {
+              size: 14
+            },
+            titleFont: {
+              size: 16
+            }
+          },
+          title: {
+            display: false
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: '#ffffff',
+              font: {
+                size: 13
+                
+              }
+            },
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)'
+            }
+          },
+          y: {
+            ticks: {
+              color: '#ffffff',
+              font: {
+                size: 13,
+                
+              }
+            },
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)'
+            }
+          }
+        }
+      };
+  
       this.ordenesPorDiaChart = {
-        labels: labels,  // Los días de la semana como etiquetas
+        labels: labels,
         datasets: [{
           label: 'Órdenes por Día',
-          data: dataValues,  // Los totales de órdenes para cada día
+          data: dataValues,
           backgroundColor: '#3B82F6'
         }]
       };
@@ -81,38 +131,127 @@ export class EstadisticasDashboardComponent implements OnInit {
 
   cargarOrdenesPorMes() {
     this.http.get<any>('http://localhost:8000/api/total-ordenes-por-mes').subscribe(r => {
-      const data = r.ordenesPorMes;
+      const data = r.ventasPorMes;
   
       // Nombres de los meses
       const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-      
-      // Crear las etiquetas de los meses (convertir los números en nombres)
-      const labels = data.map((d: any) => monthNames[d.month - 1]); // Restamos 1 porque los meses en JavaScript van de 0 a 11
   
-      // Obtener los datos totales de órdenes por mes
+      // Convertir los números en nombres de meses
+      const labels = data.map((d: any) => monthNames[d.month - 1]);
+  
+      // Obtener los datos de ventas por mes
       const dataValues = data.map((d: any) => d.total);
   
-      // Configuración del gráfico
+      this.ordenesPorMesOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            labels: {
+              color: '#ffffff',
+              font: {
+                size: 14,
+                weight: 'bold'
+              }
+            }
+          },
+          tooltip: {
+            bodyFont: {
+              size: 14
+            },
+            titleFont: {
+              size: 16
+            }
+          },
+          title: {
+            display: false
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: '#ffffff',
+              font: {
+                size: 13
+              }
+            }
+          },
+          y: {
+            ticks: {
+              color: '#ffffff',
+              font: {
+                size: 13
+              }
+            }
+          }
+        }
+      };
+  
       this.ordenesPorMesChart = {
-        labels: labels,  // Etiquetas con los nombres de los meses
+        labels: labels,
         datasets: [{
-          label: 'Órdenes por Mes',
-          data: dataValues,  // Datos de las órdenes por mes
+          label: 'Ordenes por Mes',
+          data: dataValues,
           borderColor: '#10B981',
           fill: true,
           tension: 0.4
         }]
       };
     });
+  
+  
+      
   }
 
   cargarVentasPorSabor() {
     this.http.get<any>('http://localhost:8000/api/ventas-por-sabor').subscribe(r => {
       const data = r.ventasPorSabor;
+
+      this.ventasPorSaborOptions = { // 👈 usar this
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            bodyFont: {
+              size: 14
+            },
+            titleFont: {
+              size: 16
+            }
+          },
+          title: {
+            display: false
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: '#ffffff',
+              font: {
+                size: 11
+                
+              }
+            },
+            
+          },
+          y: {
+            ticks: {
+              color: '#ffffff',
+              font: {
+                size: 12,
+                
+              }
+            },
+            
+          }
+        }
+      };
       this.ventasPorSaborChart = {
         labels: data.map((d: any) => d.Nombre_Pizza),
         datasets: [{
-          label: 'Ventas por Sabor',
+          
           data: data.map((d: any) => d.totalPorciones),
           backgroundColor: ['#42A5F5', '#66BB6A', '#FFA726', '#FF7043', '#AB47BC']
         }]

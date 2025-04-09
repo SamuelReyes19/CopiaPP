@@ -35,29 +35,31 @@
     font-weight: bold;
     margin-bottom: 10px;
   }
-  .charts-grid {
+  .charts-grid-row {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* fuerza 2 columnas */
-    gap: 2rem;
-    padding: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem; /* Ajusta el espacio entre gráficos */
+  }
+
+  .span-2 {
+    grid-column: span 2;
   }
   
   .chart-wrapper {
-    background-color: rgba(255, 255, 255, 0.05); /* opcional: fondo semitransparente si usas fondo oscuro */
+    background-color: #1f2937; /* Fondo oscuro */
     border-radius: 1rem;
     padding: 1rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   .chart-container {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
+    height: 300px; /* Puedes ajustarlo según lo que necesites */
   }
+  
 
+  
   @media (max-width: 768px) {
-    .charts-grid {
+    .charts-grid-row {
       grid-template-columns: 1fr;
     }
   }
