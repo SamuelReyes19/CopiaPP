@@ -4,7 +4,9 @@
         <h2 class="mt-4">Selecciona la Fecha y Hora de Entrega</h2>
         <label for="fechaHoraEntrega" class="form-label">Fecha y Hora de Entrega:</label>
         <input type="datetime-local" class="form-control" id="fechaHoraEntrega" formControlName="FechaHoraEntrega"
-            [min]="minFechaHora" [max]="maxFechaHora" step="1800">
+            [min]="minFechaHora" [max]="maxFechaHora" step="1800" (blur)="validarFechaHora()" />
+
+
 
         <h2 class="mt-5 text-center">Menú de Pizzas</h2>
 
@@ -40,7 +42,8 @@
 </div>
 
 <!-- Modal de Confirmación -->
-<div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="confirmacionModalLabel" aria-hidden="true">
+<div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="confirmacionModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

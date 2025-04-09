@@ -50,18 +50,58 @@ export class ReservaComponent {
     return this.form.get('pizzas') as FormArray;
   }
 
-  setFechasValidas() {
-    const ahora = new Date();
-    ahora.setMinutes(0);
-    ahora.setSeconds(0);
+  esFechaValida(fechaHoraStr: string): boolean {
+    const fecha = new Date(fechaHoraStr);
+    const dia = fecha.getDay();
+    const hora = fecha.getHours();
+    const minutos = fecha.getMinutes();
 
-    const mañana = new Date();
-    mañana.setDate(mañana.getDate() + 1);
-    mañana.setHours(23, 30, 0, 0);
+    if (![5, 6, 0].includes(dia)) return false;
+    if (hora < 15 || hora > 22 || (hora === 22 && minutos > 30)) return false;
+    if (minutos !== 0 && minutos !== 30) return false;
 
-    this.minFechaHora = ahora.toISOString().slice(0, 16);
-    this.maxFechaHora = mañana.toISOString().slice(0, 16);
+    return true;
   }
+
+  setFechasValidas() {
+    const hoy = new Date();
+    const dia = hoy.getDay();
+
+    let diasHastaFin = 0;
+
+    if (dia === 5 || dia === 6 || dia === 0) {
+      diasHastaFin = 0;
+    } else {
+      diasHastaFin = (5 + 7 - dia) % 7;
+    }
+
+    const fechaMin = new Date(hoy);
+    fechaMin.setDate(hoy.getDate() + diasHastaFin);
+    fechaMin.setHours(15, 0, 0, 0);
+
+    const fechaMax = new Date(fechaMin);
+    fechaMax.setDate(fechaMax.getDate() + 1);
+    fechaMax.setHours(23, 0, 0, 0);
+
+    this.minFechaHora = fechaMin.toISOString().slice(0, 16);
+    this.maxFechaHora = fechaMax.toISOString().slice(0, 16);
+
+    console.log('Día actual:', dia, 'Min:', this.minFechaHora, 'Max:', this.maxFechaHora);
+  }
+
+  validarFechaHora() {
+    const fechaHora = this.form.get('FechaHoraEntrega')?.value;
+    if (!this.esFechaValida(fechaHora)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Fecha y hora inválida',
+        text: 'Debe ser viernes, sábado o domingo entre 3:00 PM y 11:00 PM en intervalos de 30 minutos.'
+      });
+      this.form.get('FechaHoraEntrega')?.setValue('');
+    }
+  }
+
+
 
   prepararResumen() {
     const datos = this.form.value;
@@ -73,7 +113,20 @@ export class ReservaComponent {
       .filter((pizza: { NumeroPorciones: number }) => pizza.NumeroPorciones > 0);
 
     if (pizzasSeleccionadas.length === 0) {
-      alert("Debe seleccionar al menos una pizza con porciones.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Atención',
+        text: 'Debe seleccionar al menos una pizza con porciones.'
+      });
+      return;
+    }
+
+    if (!this.esFechaValida(datos.FechaHoraEntrega)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Fecha no válida',
+        text: 'La fecha/hora debe ser viernes, sábado o domingo entre 3:00 PM y 11:00 PM, en intervalos de 30 minutos.'
+      });
       return;
     }
 
@@ -86,11 +139,18 @@ export class ReservaComponent {
     };
   }
 
+
   confirmarReserva() {
     if (!this.resumenPedido.FechaHoraEntrega || this.resumenPedido.pizzas.length === 0) {
-      alert("Error: No hay datos válidos para la reserva.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Datos incompletos',
+        text: 'No hay datos válidos para la reserva. Asegúrate de seleccionar una fecha de entrega y al menos una pizza.',
+        confirmButtonText: 'OK'
+      });
       return;
     }
+
 
     this.http.post('http://127.0.0.1:8000/api/reserva', {
       FechaHoraEntrega: this.resumenPedido.FechaHoraEntrega,
@@ -113,7 +173,6 @@ export class ReservaComponent {
             error: (err) => console.log('Error al enviar el item', err)
           });
         });
-
       },
       error: (error) => {
         console.log('Error al enviar la reserva', error);
