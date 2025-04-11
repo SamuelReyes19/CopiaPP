@@ -1,35 +1,35 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\OrdenCompraModelo;
 use App\Models\OrdenIngredienteModelo;
-use App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class OrdenIngredienteControlador extends Controller
 {
-    public function store(Request $request){
-        // Cambiamos validación para aceptar arreglo de items
+    public function store(Request $request)
+    {
+        // Validar entrada
         $validacion = Validator::make($request->all(), [
+            'idOrden' => 'required|numeric|exists:ordendecompra,idOrden',
             'items' => 'required|array|min:1',
             'items.*.idIngrediente' => 'required|string',
             'items.*.CantidadComprada' => 'required|numeric'
         ]);
 
-        if($validacion->fails()){
-            $data = [
-                'message' => 'Error en la validacion de datos',
+        if ($validacion->fails()) {
+            return response()->json([
+                'message' => 'Error en la validación de datos',
                 'errors' => $validacion->errors(),
-                'status' => 200
-            ];
-            return response()->json($data, 400);
+                'status' => 400
+            ], 400);
         }
 
         $ordenes = [];
-        $idOrden = OrdenCompraModelo::max('idOrden');
+        $idOrden = $request->idOrden; // ✅ Usar el idOrden que viene del frontend
 
-        // Recorremos cada item enviado desde Angular
         foreach ($request->items as $item) {
             $ordenIngrediente = OrdenIngredienteModelo::create([
                 'idOrden' => $idOrden,
@@ -42,10 +42,9 @@ class OrdenIngredienteControlador extends Controller
             $ordenes[] = $ordenIngrediente;
         }
 
-        $data = [
+        return response()->json([
             'Orden Ingrediente' => $ordenes,
             'status' => 201
-        ];
-        return response()->json($data, 201);
+        ], 201);
     }
 }

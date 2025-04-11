@@ -7,6 +7,7 @@ use App\Http\Controllers\ReservaControlador;
 use App\Http\Controllers\LineaControlador;
 use App\Http\Controllers\EstadisticasPizzeriaControlador;
 use App\Http\Controllers\OrdenIngredienteControlador;
+use App\Http\Controllers\OrdenCompraControlador;
 
 
 /*
