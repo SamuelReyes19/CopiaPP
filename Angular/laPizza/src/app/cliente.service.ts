@@ -18,7 +18,7 @@ export class ClienteService {
     return this.http.get<any[]>(`${this.apiUrl}/tipos-documento`); // Uso correcto de la plantilla literal
   }
   getClientes(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/usuario`); // Cambia la URL según sea necesario
+    return this.http.get<any[]>(`${this.apiUrl}/pizzapaisa`); // Cambia la URL según sea necesario
 }
 
   //updateCliente(usuario: any) {
