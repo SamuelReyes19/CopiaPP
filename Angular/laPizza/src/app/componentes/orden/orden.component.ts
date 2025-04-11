@@ -59,11 +59,10 @@ export class OrdenComponent {
       CantidadComprada: ['']
     });
 
-    // Reiniciar campos antes de agregar
     itemGroup.reset({ idIngrediente: '', CantidadComprada: '' });
 
     this.items.push(itemGroup);
-    this.cdRef.detectChanges(); // Forzar actualización visual
+    this.cdRef.detectChanges();
   }
 
   removeItem(index: number) {
@@ -73,16 +72,35 @@ export class OrdenComponent {
   onSubmit() {
     if (this.form.valid) {
       const datos = this.form.value;
-      this.http.post('http://127.0.0.1:8000/api/orden-ingrediente', datos)
-        .subscribe({
-          next: (response) => {
-            console.log('Datos enviados exitosamente', response);
-            alert("Orden registrada con éxito");
-          },
-          error: (error) => {
-            console.log('Error al enviar los datos', error);
-          }
-        });
+      const documento = localStorage.getItem('documento');
+
+      this.http.post<any>('http://127.0.0.1:8000/api/orden-compra', {
+        UsuarioDocumento: documento
+      }).subscribe({
+        next: (respuesta) => {
+          const idOrden = respuesta['Orden de Compra'].idOrden;
+
+          const payload = {
+            idOrden: idOrden,
+            items: datos.items
+          };
+
+          this.http.post('http://127.0.0.1:8000/api/orden-ingrediente', payload)
+            .subscribe({
+              next: (res) => {
+                console.log('Orden registrada con éxito', res);
+                alert('Orden registrada exitosamente.');
+              },
+              error: (err) => {
+                console.log('Error al registrar ingredientes', err);
+              }
+            });
+        },
+        error: (err) => {
+          console.log('Error al crear orden de compra', err);
+        }
+      });
+
     } else {
       console.log('Formulario inválido');
     }

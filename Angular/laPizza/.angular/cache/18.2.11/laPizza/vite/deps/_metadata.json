@@ -1,55 +1,55 @@
 {
-  "hash": "219b52ee",
-  "configHash": "58793c67",
-  "lockfileHash": "93850daf",
-  "browserHash": "a2468118",
+  "hash": "6cb72372",
+  "configHash": "34b3df10",
+  "lockfileHash": "ea778ebb",
+  "browserHash": "26ab9498",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "0fb1bb02",
+      "fileHash": "66049e16",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "b66445b6",
+      "fileHash": "24da2a05",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "6fd4e07b",
+      "fileHash": "b0a35bca",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "5b6c0de5",
+      "fileHash": "82b0f55c",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "2c924562",
+      "fileHash": "17558b8f",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "839ac03a",
+      "fileHash": "1dd1d52b",
       "needsInterop": false
     },
     "ng2-charts": {
       "src": "../../../../../../node_modules/ng2-charts/fesm2020/ng2-charts.mjs",
       "file": "ng2-charts.js",
-      "fileHash": "4e0e06b6",
+      "fileHash": "29f74ac2",
       "needsInterop": false
     },
     "sweetalert2": {
       "src": "../../../../../../node_modules/sweetalert2/dist/sweetalert2.esm.all.js",
       "file": "sweetalert2.js",
-      "fileHash": "38e2f053",
+      "fileHash": "b9056f23",
       "needsInterop": false
     }
   },
