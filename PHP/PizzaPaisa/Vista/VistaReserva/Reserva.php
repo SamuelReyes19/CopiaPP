@@ -155,9 +155,9 @@
             <button class="btn btn-outline-success" name="buscar" value="buscar" type="submit">Search</button>
             </form>
             
-            <button type="button"  class="btn btn-primary d-flex  m-3  " style="height:20px ;" data-bs-toggle="modal" data-bs-target="#Reservar">
+           <!-- <button type="button"  class="btn btn-primary d-flex  m-3  " style="height:20px ;" data-bs-toggle="modal" data-bs-target="#Reservar">
             Reserva
-            </button>
+            </button> -->
            
         </div>
         
