@@ -20,17 +20,18 @@ use App\Http\Controllers\OrdenCompraControlador;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::post('/login',[usuarioControlador::class,'login']);
-Route::get('/pizzapaisa',[usuarioControlador::class,'index']);
-Route::post('/pizzapaisa',[usuarioControlador::class, 'store']);
-Route::get('/pizzapaisa/{UsuarioDocumento}',[usuarioControlador::class, 'show']);
-Route::put('/pizzapaisa/{UsuarioDocumento}',[usuarioControlador::class, 'update']);
-Route::delete('/pizzapaisa/{UsuarioDocumento}',[usuarioControlador::class,'destroy']);
+
+Route::post('/login', [usuarioControlador::class, 'login']);
+Route::get('/pizzapaisa', [usuarioControlador::class, 'index']);
+Route::post('/pizzapaisa', [usuarioControlador::class, 'store']);
+Route::get('/pizzapaisa/{UsuarioDocumento}', [usuarioControlador::class, 'show']);
+Route::put('/pizzapaisa/{UsuarioDocumento}', [usuarioControlador::class, 'update']);
+Route::delete('/pizzapaisa/{UsuarioDocumento}', [usuarioControlador::class, 'destroy']);
 
 Route::post('/reserva', [ReservaControlador::class, 'store']);
 Route::get('/reserva', [ReservaControlador::class, 'index']);
-Route::put('/reserva', [ReservaControlador::class,'updeit']);
-Route::delete('/reserva', [ReservaControlador::class,'dilit']);
+Route::put('/reserva', [ReservaControlador::class, 'updeit']);
+Route::delete('/reserva', [ReservaControlador::class, 'dilit']);
 
 Route::get('/linea', [LineaControlador::class, 'index']);
 Route::post('/linea', [LineaControlador::class, 'store']);
