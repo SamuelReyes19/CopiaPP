@@ -48,7 +48,7 @@ export class EstadisticasDashboardComponent implements OnInit {
     this.cargarOrdenesPorDia();
     this.cargarOrdenesPorMes();
     this.cargarVentasPorSabor();
-    /**this.cargarTopPizzasVendidas();**/
+    /*this.cargarTopPizzasVendidas();*/
   }
 
   cargarResumen() {
@@ -133,14 +133,18 @@ export class EstadisticasDashboardComponent implements OnInit {
     this.http.get<any>('http://localhost:8000/api/total-ordenes-por-mes').subscribe(r => {
       const data = r.ventasPorMes;
   
-      // Nombres de los meses
       const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
   
-      // Convertir los números en nombres de meses
-      const labels = data.map((d: any) => monthNames[d.month - 1]);
+      // Inicializar datos con ceros
+      const monthlyData = Array(12).fill(0);
   
-      // Obtener los datos de ventas por mes
-      const dataValues = data.map((d: any) => d.total);
+      // Reemplazar con los valores reales si existen
+      data.forEach((d: any) => {
+        monthlyData[d.month - 1] = d.total;
+      });
+  
+      const labels = monthNames;
+      const dataValues = monthlyData;
   
       this.ordenesPorMesOptions = {
         responsive: true,
@@ -198,10 +202,8 @@ export class EstadisticasDashboardComponent implements OnInit {
         }]
       };
     });
-  
-  
-      
   }
+
 
   cargarVentasPorSabor() {
     this.http.get<any>('http://localhost:8000/api/ventas-por-sabor').subscribe(r => {
