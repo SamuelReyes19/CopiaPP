@@ -42,13 +42,13 @@ export class IniciosesionComponent {
             console.log('Error en el inicio de sesión', error);
             Swal.fire({
               icon: 'error',
-              title: 'Nel Prro',
+              title: 'Error',
               text: 'Datos incorrectos. Por favor, verifica tu correo, documento o contraseña.',
               confirmButtonColor: '#d33',
               confirmButtonText: 'Entendido'
             });
           }
-          
+
         });
     } else {
       console.log('Formulario no válido');
