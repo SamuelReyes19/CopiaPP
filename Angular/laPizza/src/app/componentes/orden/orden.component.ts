@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-orden',
@@ -89,7 +90,11 @@ export class OrdenComponent {
             .subscribe({
               next: (res) => {
                 console.log('Orden registrada con éxito', res);
-                alert('Orden registrada exitosamente.');
+                Swal.fire({
+                  title: "Orden registrada exitosamente.",
+                  icon: "success",
+                  draggable: true
+                });
               },
               error: (err) => {
                 console.log('Error al registrar ingredientes', err);
