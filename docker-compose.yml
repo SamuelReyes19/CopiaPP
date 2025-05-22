@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./Laravel/pizzaPaisaAP
+      dockerfile: DockerFile
+    container_name: laravel_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./Laravel/pizzaPaisaAP:/var/www
+    depends_on:
+      - db
+    networks:
+      - pizzapaisa-network
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: mysql-db
+      DB_PORT: 3306
+      DB_DATABASE: pizzapaisa
+      DB_USERNAME: root
+      DB_PASSWORD: 
+
+  db:
+    build:
+      context: ./DataBase
+      dockerfile: DockerFile
+    container_name: mysql-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: pizzapaisa
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: ""
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./DataBase/pizzapaisa.sql:/docker-entrypoint-initdb.d/pizzapaisa.sql
+    networks:
+      - pizzapaisa-network
+
+volumes:
+  mysql_data:
+
+networks:
+  pizzapaisa-network:
