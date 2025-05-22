@@ -1,0 +1,7 @@
+# Dockerfile.db
+FROM mysql:8.3
+
+# Opcional: Copia de configuración personalizada si la tienes
+# COPY ./my.cnf /etc/mysql/my.cnf
+
+EXPOSE 3306
