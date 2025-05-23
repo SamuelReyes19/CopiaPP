@@ -49,7 +49,7 @@ export class FormularioComponent implements OnInit {
     console.log('Formulario inválido:', this.form.invalid);
     if (this.form.valid) {
       const datos = this.form.value;
-      this.http.post('http://localhost:8000/api/pizzapaisa', datos).subscribe({
+      this.http.post('http://backend:8000/api/pizzapaisa', datos).subscribe({
         next: (respuesta) => {
           console.log('Datos enviados exitosamente', respuesta);
           this.router.navigate(['/inicio-sesion']);

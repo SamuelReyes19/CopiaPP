@@ -97,7 +97,7 @@ export class TablaUsuarioComponent implements OnInit {
   guardarEdicion() {
     if (this.formularioEdicion.valid) {
       const datos = this.formularioEdicion.value;
-      this.http.put(`http://localhost:8000/api/pizzapaisa/${datos.UsuarioDocumento}`, datos)
+      this.http.put(`http://backend:8000/api/pizzapaisa/${datos.UsuarioDocumento}`, datos)
         .subscribe(
           (response) => {
             console.log('Usuario actualizado', response);
@@ -125,7 +125,7 @@ export class TablaUsuarioComponent implements OnInit {
   guardarElimin() {
     if (this.formularioEliminar.valid) {
       const datos = this.formularioEliminar.value;
-      this.http.delete(`http://localhost:8000/api/pizzapaisa/${datos.UsuarioDocumento}`)
+      this.http.delete(`http://backend:8000/api/pizzapaisa/${datos.UsuarioDocumento}`)
         .subscribe(
           (response) => {
             console.log('Usuario Eliminado', response);

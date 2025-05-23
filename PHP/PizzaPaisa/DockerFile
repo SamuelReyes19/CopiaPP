@@ -1,0 +1,11 @@
+# Imagen base con PHP y servidor web (Apache)
+FROM php:8.1-apache
+
+# Copiar tu código PHP al contenedor
+COPY . /var/www/html/
+
+# Habilitar mod_rewrite si lo necesitas
+RUN a2enmod rewrite
+
+# Exponer puerto 80
+EXPOSE 80

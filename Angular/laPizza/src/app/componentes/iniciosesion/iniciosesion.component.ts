@@ -25,7 +25,7 @@ export class IniciosesionComponent {
   onLogin() {
     if (this.form.valid) {
       const datos = this.form.value;
-      this.http.post<{ token: string, usuario: any }>('http://localhost:8000/api/login', datos)
+      this.http.post<{ token: string, usuario: any }>('http://backend:8000/api/login', datos)
         .subscribe({
           next: (respuesta) => {
             console.log('Inicio de sesión exitoso', respuesta);
