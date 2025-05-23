@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClienteService {
-  private apiUrl = 'http://localhost:8000/api'; // Asegúrate de que esta URL sea correcta
+  private apiUrl = 'http://backend:8000/api'; // Asegúrate de que esta URL sea correcta
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +22,7 @@ export class ClienteService {
 }
 
   //updateCliente(usuario: any) {
-   // const url = http://localhost:8000/api/pizzapaisa/${usuario.UsuarioDocumento};
+   // const url = http://backend:8000/api/pizzapaisa/${usuario.UsuarioDocumento};
 //return this.http.put(url, usuario);}
 
 }

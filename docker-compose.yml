@@ -39,6 +39,27 @@ services:
     networks:
       - pizzapaisa-network
 
+  frontend:
+    build:
+      context: ./Angular/laPizza
+      dockerfile: DockerFile
+    container_name: angular-frontend
+    ports:
+      - "4200:4200"  # Mapea el puerto del contenedor al host
+    depends_on:
+      - backend
+    networks:
+      - pizzapaisa-network
+
+  php:
+    build:
+      context: ./PHP/PizzaPaisa  # Ajusta según dónde esté tu carpeta con el PHP puro
+      dockerfile: DockerFile
+    container_name: php-legacy
+    ports:
+      - "8080:80"  # Puedes acceder a esto desde localhost:8080
+    networks:
+      - pizzapaisa-network
 volumes:
   mysql_data:
 

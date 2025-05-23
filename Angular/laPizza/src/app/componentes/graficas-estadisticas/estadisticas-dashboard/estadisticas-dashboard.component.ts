@@ -52,15 +52,15 @@ export class EstadisticasDashboardComponent implements OnInit {
   }
 
   cargarResumen() {
-    this.http.get<any>('http://localhost:8000/api/total-ordenes').subscribe(r => this.totalOrdenes = r.totalOrdenes);
-    this.http.get<any>('http://localhost:8000/api/total-porciones-vendidas').subscribe(r => this.totalPorciones = r.total);
-    this.http.get<any>('http://localhost:8000/api/promedio-porcion-orden').subscribe(r => this.promedioPorciones = r.promedioPorcionesPorOrden);
-    this.http.get<any>('http://localhost:8000/api/promedio-valor-orden').subscribe(r => this.promedioValor = r.promedio);
-    this.http.get<any>('http://localhost:8000/api/total-ingresos').subscribe(r => this.totalIngresos = r.totalIngresos);
+    this.http.get<any>('http://backend:8000/api/total-ordenes').subscribe(r => this.totalOrdenes = r.totalOrdenes);
+    this.http.get<any>('http://backend:8000/api/total-porciones-vendidas').subscribe(r => this.totalPorciones = r.total);
+    this.http.get<any>('http://backend:8000/api/promedio-porcion-orden').subscribe(r => this.promedioPorciones = r.promedioPorcionesPorOrden);
+    this.http.get<any>('http://backend:8000/api/promedio-valor-orden').subscribe(r => this.promedioValor = r.promedio);
+    this.http.get<any>('http://backend:8000/api/total-ingresos').subscribe(r => this.totalIngresos = r.totalIngresos);
   }
 
   cargarOrdenesPorDia() {
-    this.http.get<any>('http://localhost:8000/api/total-ordenes-por-dia').subscribe(r => {
+    this.http.get<any>('http://backend:8000/api/total-ordenes-por-dia').subscribe(r => {
       const data = r.resultados;
   
       const labels = ['Viernes', 'Sábado', 'Domingo'];
@@ -130,7 +130,7 @@ export class EstadisticasDashboardComponent implements OnInit {
   }
 
   cargarOrdenesPorMes() {
-    this.http.get<any>('http://localhost:8000/api/total-ordenes-por-mes').subscribe(r => {
+    this.http.get<any>('http://backend:8000/api/total-ordenes-por-mes').subscribe(r => {
       const data = r.ventasPorMes;
   
       const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
@@ -206,7 +206,7 @@ export class EstadisticasDashboardComponent implements OnInit {
 
 
   cargarVentasPorSabor() {
-    this.http.get<any>('http://localhost:8000/api/ventas-por-sabor').subscribe(r => {
+    this.http.get<any>('http://backend:8000/api/ventas-por-sabor').subscribe(r => {
       const data = r.ventasPorSabor;
 
       this.ventasPorSaborOptions = { // 👈 usar this
@@ -262,7 +262,7 @@ export class EstadisticasDashboardComponent implements OnInit {
   }
 
   /**cargarTopPizzasVendidas() {
-    this.http.get<any>('http://localhost:8000/api/top-pizzas-vendidas').subscribe(data => {
+    this.http.get<any>('http://backend:8000/api/top-pizzas-vendidas').subscribe(data => {
       if (!data || data.length === 0) {
         console.warn('No hay datos de pizzas vendidas.');
         return;
